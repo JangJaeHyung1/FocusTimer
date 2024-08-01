@@ -9,21 +9,52 @@
 /* Begin PBXBuildFile section */
 		E90C3E8A2C5A6DCA002DACB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3E892C5A6DCA002DACB9 /* AppDelegate.swift */; };
 		E90C3E8C2C5A6DCA002DACB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3E8B2C5A6DCA002DACB9 /* SceneDelegate.swift */; };
-		E90C3E8E2C5A6DCA002DACB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3E8D2C5A6DCA002DACB9 /* ViewController.swift */; };
+		E90C3E8E2C5A6DCA002DACB9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3E8D2C5A6DCA002DACB9 /* MainViewController.swift */; };
 		E90C3E912C5A6DCA002DACB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E90C3E8F2C5A6DCA002DACB9 /* Main.storyboard */; };
 		E90C3E932C5A6DCC002DACB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E90C3E922C5A6DCC002DACB9 /* Assets.xcassets */; };
 		E90C3E962C5A6DCC002DACB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E90C3E942C5A6DCC002DACB9 /* LaunchScreen.storyboard */; };
+		E90C3E9F2C5A6DF0002DACB9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E90C3E9E2C5A6DF0002DACB9 /* SnapKit */; };
+		E90C3EA22C5A6E26002DACB9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E90C3EA12C5A6E26002DACB9 /* RxCocoa */; };
+		E90C3EA42C5A6E26002DACB9 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = E90C3EA32C5A6E26002DACB9 /* RxRelay */; };
+		E90C3EA62C5A6E26002DACB9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E90C3EA52C5A6E26002DACB9 /* RxSwift */; };
+		E90C3EA82C5A6EBF002DACB9 /* CircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EA72C5A6EBE002DACB9 /* CircularSlider.swift */; };
+		E90C3EB02C5A6F26002DACB9 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = E90C3EAF2C5A6F26002DACB9 /* FSCalendar */; };
+		E90C3EC12C5A718E002DACB9 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EC02C5A718E002DACB9 /* TabbarViewController.swift */; };
+		E90C3EC32C5A71BB002DACB9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EC22C5A71BB002DACB9 /* Extension.swift */; };
+		E90C3EC52C5A729F002DACB9 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EC42C5A729F002DACB9 /* CalendarViewController.swift */; };
+		E90C3EC72C5A72B5002DACB9 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EC62C5A72B5002DACB9 /* CalendarCollectionViewCell.swift */; };
+		E90C3EC92C5A72D9002DACB9 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EC82C5A72D9002DACB9 /* DesignSystem.swift */; };
+		E90C3ECB2C5A7304002DACB9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3ECA2C5A7304002DACB9 /* SettingViewController.swift */; };
+		E90C3ECD2C5A73D6002DACB9 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3ECC2C5A73D6002DACB9 /* DataModel.swift */; };
+		E90C3ECF2C5A74CC002DACB9 /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3ECE2C5A74CC002DACB9 /* LoadData.swift */; };
+		E90C3EE22C5A8C66002DACB9 /* TimeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */; };
+		E9E44F4F2C5BCDE4005C4AFC /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E44F4E2C5BCDE4005C4AFC /* RealmAPI.swift */; };
+		E9E81A772C5BD538005A82E6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E9E81A762C5BD538005A82E6 /* Realm */; };
+		E9E81A792C5BD538005A82E6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E9E81A782C5BD538005A82E6 /* RealmSwift */; };
+		E9E81A7B2C5BD662005A82E6 /* RealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E81A7A2C5BD662005A82E6 /* RealmDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E90C3E862C5A6DCA002DACB9 /* FocusTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90C3E892C5A6DCA002DACB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E90C3E8B2C5A6DCA002DACB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E90C3E8D2C5A6DCA002DACB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E90C3E8D2C5A6DCA002DACB9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E90C3E902C5A6DCA002DACB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E90C3E922C5A6DCC002DACB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E90C3E952C5A6DCC002DACB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E90C3E972C5A6DCC002DACB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E90C3EA72C5A6EBE002DACB9 /* CircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSlider.swift; sourceTree = "<group>"; };
+		E90C3EC02C5A718E002DACB9 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		E90C3EC22C5A71BB002DACB9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		E90C3EC42C5A729F002DACB9 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		E90C3EC62C5A72B5002DACB9 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		E90C3EC82C5A72D9002DACB9 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		E90C3ECA2C5A7304002DACB9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		E90C3ECC2C5A73D6002DACB9 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		E90C3ECE2C5A74CC002DACB9 /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
+		E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConvertion.swift; sourceTree = "<group>"; };
+		E9E44F4E2C5BCDE4005C4AFC /* RealmAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
+		E9E81A7A2C5BD662005A82E6 /* RealmDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +62,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E81A772C5BD538005A82E6 /* Realm in Frameworks */,
+				E90C3EA42C5A6E26002DACB9 /* RxRelay in Frameworks */,
+				E9E81A792C5BD538005A82E6 /* RealmSwift in Frameworks */,
+				E90C3EA22C5A6E26002DACB9 /* RxCocoa in Frameworks */,
+				E90C3EA62C5A6E26002DACB9 /* RxSwift in Frameworks */,
+				E90C3E9F2C5A6DF0002DACB9 /* SnapKit in Frameworks */,
+				E90C3EB02C5A6F26002DACB9 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +94,139 @@
 		E90C3E882C5A6DCA002DACB9 /* FocusTimer */ = {
 			isa = PBXGroup;
 			children = (
+				E90C3EB12C5A6F3C002DACB9 /* Application */,
+				E90C3EB52C5A6F5F002DACB9 /* Supporting */,
+				E90C3EB42C5A6F58002DACB9 /* Screens */,
+				E90C3EB32C5A6F52002DACB9 /* Domain */,
+				E90C3EB22C5A6F49002DACB9 /* Platform */,
+			);
+			path = FocusTimer;
+			sourceTree = "<group>";
+		};
+		E90C3EB12C5A6F3C002DACB9 /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				E90C3E892C5A6DCA002DACB9 /* AppDelegate.swift */,
 				E90C3E8B2C5A6DCA002DACB9 /* SceneDelegate.swift */,
-				E90C3E8D2C5A6DCA002DACB9 /* ViewController.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E90C3EB22C5A6F49002DACB9 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EBA2C5A7008002DACB9 /* Utilities */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		E90C3EB32C5A6F52002DACB9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EB82C5A6FF1002DACB9 /* Model */,
+				E90C3EB92C5A6FF6002DACB9 /* Repository */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		E90C3EB42C5A6F58002DACB9 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EBF2C5A717B002DACB9 /* Tabbar */,
+				E90C3EBE2C5A7031002DACB9 /* Common */,
+				E90C3EBD2C5A7027002DACB9 /* Calendar */,
+				E90C3EBC2C5A7022002DACB9 /* Setting */,
+				E90C3EBB2C5A701B002DACB9 /* Main */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E90C3EB52C5A6F5F002DACB9 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EB72C5A6FE6002DACB9 /* Image */,
 				E90C3E8F2C5A6DCA002DACB9 /* Main.storyboard */,
 				E90C3E922C5A6DCC002DACB9 /* Assets.xcassets */,
 				E90C3E942C5A6DCC002DACB9 /* LaunchScreen.storyboard */,
 				E90C3E972C5A6DCC002DACB9 /* Info.plist */,
 			);
-			path = FocusTimer;
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		E90C3EB72C5A6FE6002DACB9 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		E90C3EB82C5A6FF1002DACB9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3ECC2C5A73D6002DACB9 /* DataModel.swift */,
+				E9E81A7A2C5BD662005A82E6 /* RealmDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E90C3EB92C5A6FF6002DACB9 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3ECE2C5A74CC002DACB9 /* LoadData.swift */,
+				E9E44F4E2C5BCDE4005C4AFC /* RealmAPI.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		E90C3EBA2C5A7008002DACB9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EC22C5A71BB002DACB9 /* Extension.swift */,
+				E90C3EC82C5A72D9002DACB9 /* DesignSystem.swift */,
+				E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E90C3EBB2C5A701B002DACB9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3E8D2C5A6DCA002DACB9 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E90C3EBC2C5A7022002DACB9 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3ECA2C5A7304002DACB9 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		E90C3EBD2C5A7027002DACB9 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EC42C5A729F002DACB9 /* CalendarViewController.swift */,
+				E90C3EC62C5A72B5002DACB9 /* CalendarCollectionViewCell.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		E90C3EBE2C5A7031002DACB9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EA72C5A6EBE002DACB9 /* CircularSlider.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E90C3EBF2C5A717B002DACB9 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				E90C3EC02C5A718E002DACB9 /* TabbarViewController.swift */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +245,15 @@
 			dependencies = (
 			);
 			name = FocusTimer;
+			packageProductDependencies = (
+				E90C3E9E2C5A6DF0002DACB9 /* SnapKit */,
+				E90C3EA12C5A6E26002DACB9 /* RxCocoa */,
+				E90C3EA32C5A6E26002DACB9 /* RxRelay */,
+				E90C3EA52C5A6E26002DACB9 /* RxSwift */,
+				E90C3EAF2C5A6F26002DACB9 /* FSCalendar */,
+				E9E81A762C5BD538005A82E6 /* Realm */,
+				E9E81A782C5BD538005A82E6 /* RealmSwift */,
+			);
 			productName = FocusTimer;
 			productReference = E90C3E862C5A6DCA002DACB9 /* FocusTimer.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +282,12 @@
 				Base,
 			);
 			mainGroup = E90C3E7D2C5A6DCA002DACB9;
+			packageReferences = (
+				E90C3E9D2C5A6DF0002DACB9 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E90C3EA02C5A6E26002DACB9 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				E90C3EAE2C5A6F26002DACB9 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				E9E81A752C5BD538005A82E6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = E90C3E872C5A6DCA002DACB9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +315,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E90C3E8E2C5A6DCA002DACB9 /* ViewController.swift in Sources */,
+				E9E44F4F2C5BCDE4005C4AFC /* RealmAPI.swift in Sources */,
+				E90C3EC72C5A72B5002DACB9 /* CalendarCollectionViewCell.swift in Sources */,
+				E90C3E8E2C5A6DCA002DACB9 /* MainViewController.swift in Sources */,
+				E90C3EE22C5A8C66002DACB9 /* TimeConvertion.swift in Sources */,
+				E90C3ECD2C5A73D6002DACB9 /* DataModel.swift in Sources */,
 				E90C3E8A2C5A6DCA002DACB9 /* AppDelegate.swift in Sources */,
+				E90C3EC92C5A72D9002DACB9 /* DesignSystem.swift in Sources */,
 				E90C3E8C2C5A6DCA002DACB9 /* SceneDelegate.swift in Sources */,
+				E90C3ECB2C5A7304002DACB9 /* SettingViewController.swift in Sources */,
+				E90C3EC32C5A71BB002DACB9 /* Extension.swift in Sources */,
+				E90C3EC12C5A718E002DACB9 /* TabbarViewController.swift in Sources */,
+				E90C3EC52C5A729F002DACB9 /* CalendarViewController.swift in Sources */,
+				E90C3EA82C5A6EBF002DACB9 /* CircularSlider.swift in Sources */,
+				E9E81A7B2C5BD662005A82E6 /* RealmDataModel.swift in Sources */,
+				E90C3ECF2C5A74CC002DACB9 /* LoadData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,18 +483,19 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8Y6GZNH939;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FocusTimer/Info.plist;
+				INFOPLIST_FILE = FocusTimer/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gasoon2.FocusTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggasoon2.FocusTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -322,18 +512,19 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8Y6GZNH939;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FocusTimer/Info.plist;
+				INFOPLIST_FILE = FocusTimer/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gasoon2.FocusTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggasoon2.FocusTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -363,6 +554,79 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E90C3E9D2C5A6DF0002DACB9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		E90C3EA02C5A6E26002DACB9 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+		E90C3EAE2C5A6F26002DACB9 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+		E9E81A752C5BD538005A82E6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 10.33.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E90C3E9E2C5A6DF0002DACB9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E90C3E9D2C5A6DF0002DACB9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		E90C3EA12C5A6E26002DACB9 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E90C3EA02C5A6E26002DACB9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		E90C3EA32C5A6E26002DACB9 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E90C3EA02C5A6E26002DACB9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		E90C3EA52C5A6E26002DACB9 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E90C3EA02C5A6E26002DACB9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		E90C3EAF2C5A6F26002DACB9 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E90C3EAE2C5A6F26002DACB9 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		E9E81A762C5BD538005A82E6 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9E81A752C5BD538005A82E6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		E9E81A782C5BD538005A82E6 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9E81A752C5BD538005A82E6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E90C3E7E2C5A6DCA002DACB9 /* Project object */;
 }
