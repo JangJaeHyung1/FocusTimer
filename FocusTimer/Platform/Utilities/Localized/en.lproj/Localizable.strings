@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  FocusTimer
+
+  Created by jh on 8/4/24.
+  
+*/
+"clock_theme" = "Clock Theme";
+"setting" = "Setting";
+"red_color" = "Red Color";
+"black_color" = "Black Color";
+"show_time_countdown" = "Show time countdown";
+"enabled_end_sound" = "Alarm sound";
+"start" = "Start";
+"resume" = "Resume";
+"reset" = "Reset";
+"pause" = "Pause";
+"end" = "Timer completed";
+"focus_on" = "focused.";

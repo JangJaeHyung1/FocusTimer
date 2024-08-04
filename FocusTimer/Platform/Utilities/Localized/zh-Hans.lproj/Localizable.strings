@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  FocusTimer
+
+  Created by jh on 8/4/24.
+  
+*/
+"clock_theme" = "时钟主题";
+"setting" = "环境";
+"red_color" = "红色";
+"black_color" = "黑色";
+"show_time_countdown" = "显示时间倒计时";
+"enabled_end_sound" = "闹铃声";
+"start" = "开始";
+"resume" = "开始";
+"reset" = "重置";
+"pause" = "暂停";
+"end" = "计时器完成";
+"focus_on" = "专注。";

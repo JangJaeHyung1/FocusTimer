@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  FocusTimer
+
+  Created by jh on 8/4/24.
+  
+*/
+"clock_theme" = "Chủ đề đồng hồ";
+"setting" = "Cài đặt";
+"red_color" = "Màu đỏ";
+"black_color" = "Màu đen";
+"show_time_countdown" = "Hiển thị đếm ngược thời gian";
+"enabled_end_sound" = "Âm thanh báo động";
+"start" = "Bắt đầu";
+"resume" = "Bản tóm tắt";
+"reset" = "Cài lại";
+"pause" = "Tạm ngừng";
+"end" = "Đã hoàn thành bộ hẹn giờ";
+"focus_on" = "tập trung.";

@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  FocusTimer
+
+  Created by jh on 8/4/24.
+  
+*/
+"clock_theme" = "시계 테마";
+"setting" = "설정";
+"red_color" = "레드 색상";
+"black_color" = "블랙 색상";
+"show_time_countdown" = "시간 카운트다운 보여주기";
+"enabled_end_sound" = "알람 종료 사운드 켜기";
+"start" = "Start";
+"resume" = "Resume";
+"reset" = "Reset";
+"pause" = "Pause";
+"end" = "타이머 종료";
+"focus_on" = "집중하셨습니다.";

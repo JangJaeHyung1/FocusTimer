@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  FocusTimer
+
+  Created by jh on 8/4/24.
+  
+*/
+"clock_theme" = "Часы Тема";
+"setting" = "Параметр";
+"red_color" = "Красный цвет";
+"black_color" = "Черный цвет";
+"show_time_countdown" = "Показать обратный отсчет времени";
+"enabled_end_sound" = "Сигнал тревоги";
+"start" = "Начинать";
+"resume" = "Начинать";
+"reset" = "Перезагрузить";
+"pause" = "Пауза";
+"end" = "Таймер завершен";
+"focus_on" = "сосредоточен.";

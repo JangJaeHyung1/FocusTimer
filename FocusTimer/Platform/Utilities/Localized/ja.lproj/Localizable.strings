@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  FocusTimer
+
+  Created by jh on 8/4/24.
+  
+*/
+
+"clock_theme" = "時計のテーマ";
+"setting" = "設定";
+"red_color" = "赤色";
+"black_color" = "黒色";
+"show_time_countdown" = "上映時間のカウントダウン";
+"enabled_end_sound" = "アラーム音";
+"start" = "始める";
+"resume" = "再開する";
+"reset" = "リセット";
+"pause" = "一時停止";
+"end" = "タイマーが完了しました";
+"focus_on" = "集中した。";

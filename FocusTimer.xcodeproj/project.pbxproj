@@ -11,7 +11,6 @@
 		E90C3E8C2C5A6DCA002DACB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3E8B2C5A6DCA002DACB9 /* SceneDelegate.swift */; };
 		E90C3E8E2C5A6DCA002DACB9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3E8D2C5A6DCA002DACB9 /* MainViewController.swift */; };
 		E90C3E912C5A6DCA002DACB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E90C3E8F2C5A6DCA002DACB9 /* Main.storyboard */; };
-		E90C3E932C5A6DCC002DACB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E90C3E922C5A6DCC002DACB9 /* Assets.xcassets */; };
 		E90C3E962C5A6DCC002DACB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E90C3E942C5A6DCC002DACB9 /* LaunchScreen.storyboard */; };
 		E90C3E9F2C5A6DF0002DACB9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E90C3E9E2C5A6DF0002DACB9 /* SnapKit */; };
 		E90C3EA22C5A6E26002DACB9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E90C3EA12C5A6E26002DACB9 /* RxCocoa */; };
@@ -28,6 +27,10 @@
 		E90C3ECD2C5A73D6002DACB9 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3ECC2C5A73D6002DACB9 /* DataModel.swift */; };
 		E90C3ECF2C5A74CC002DACB9 /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3ECE2C5A74CC002DACB9 /* LoadData.swift */; };
 		E90C3EE22C5A8C66002DACB9 /* TimeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */; };
+		E9369D232C5E633C00D05501 /* SoundModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9369D222C5E633C00D05501 /* SoundModule.swift */; };
+		E9369D292C5EA09200D05501 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9369D2B2C5EA09200D05501 /* InfoPlist.strings */; };
+		E9369D402C5EB51E00D05501 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9369D422C5EB51E00D05501 /* Localizable.strings */; };
+		E9369D4A2C5EB77500D05501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9369D492C5EB77500D05501 /* Assets.xcassets */; };
 		E9E44F4F2C5BCDE4005C4AFC /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E44F4E2C5BCDE4005C4AFC /* RealmAPI.swift */; };
 		E9E81A772C5BD538005A82E6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E9E81A762C5BD538005A82E6 /* Realm */; };
 		E9E81A792C5BD538005A82E6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E9E81A782C5BD538005A82E6 /* RealmSwift */; };
@@ -40,7 +43,6 @@
 		E90C3E8B2C5A6DCA002DACB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E90C3E8D2C5A6DCA002DACB9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E90C3E902C5A6DCA002DACB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E90C3E922C5A6DCC002DACB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E90C3E952C5A6DCC002DACB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E90C3E972C5A6DCC002DACB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E90C3EA72C5A6EBE002DACB9 /* CircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSlider.swift; sourceTree = "<group>"; };
@@ -53,6 +55,34 @@
 		E90C3ECC2C5A73D6002DACB9 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		E90C3ECE2C5A74CC002DACB9 /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConvertion.swift; sourceTree = "<group>"; };
+		E9369D222C5E633C00D05501 /* SoundModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModule.swift; sourceTree = "<group>"; };
+		E9369D2A2C5EA09200D05501 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9369D2C2C5EA57100D05501 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		E9369D2D2C5EA57100D05501 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E9369D2E2C5EA57100D05501 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9369D2F2C5EA57A00D05501 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		E9369D302C5EA57A00D05501 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E9369D312C5EA57A00D05501 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9369D322C5EA5BB00D05501 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		E9369D332C5EA5BB00D05501 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E9369D342C5EA5BB00D05501 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E9369D352C5EA5BF00D05501 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		E9369D362C5EA5BF00D05501 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E9369D372C5EA5BF00D05501 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E9369D382C5EA5F300D05501 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		E9369D392C5EA5F300D05501 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E9369D3A2C5EA5F400D05501 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9369D3B2C5EA5FD00D05501 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
+		E9369D3C2C5EA5FD00D05501 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E9369D3D2C5EA5FD00D05501 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9369D412C5EB51E00D05501 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9369D432C5EB52000D05501 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E9369D442C5EB52300D05501 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E9369D452C5EB52400D05501 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9369D462C5EB52400D05501 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9369D472C5EB52500D05501 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9369D482C5EB52500D05501 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9369D492C5EB77500D05501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9E44F4E2C5BCDE4005C4AFC /* RealmAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		E9E81A7A2C5BD662005A82E6 /* RealmDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,9 +176,9 @@
 			children = (
 				E90C3EB72C5A6FE6002DACB9 /* Image */,
 				E90C3E8F2C5A6DCA002DACB9 /* Main.storyboard */,
-				E90C3E922C5A6DCC002DACB9 /* Assets.xcassets */,
 				E90C3E942C5A6DCC002DACB9 /* LaunchScreen.storyboard */,
 				E90C3E972C5A6DCC002DACB9 /* Info.plist */,
+				E9369D492C5EB77500D05501 /* Assets.xcassets */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -181,9 +211,11 @@
 		E90C3EBA2C5A7008002DACB9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E9369D242C5EA00700D05501 /* Localized */,
 				E90C3EC22C5A71BB002DACB9 /* Extension.swift */,
 				E90C3EC82C5A72D9002DACB9 /* DesignSystem.swift */,
 				E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */,
+				E9369D222C5E633C00D05501 /* SoundModule.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -227,6 +259,15 @@
 				E90C3EC02C5A718E002DACB9 /* TabbarViewController.swift */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		E9369D242C5EA00700D05501 /* Localized */ = {
+			isa = PBXGroup;
+			children = (
+				E9369D422C5EB51E00D05501 /* Localizable.strings */,
+				E9369D2B2C5EA09200D05501 /* InfoPlist.strings */,
+			);
+			path = Localized;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +321,12 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
+				ja,
+				"zh-Hans",
+				"zh-Hant",
+				ru,
+				vi,
 			);
 			mainGroup = E90C3E7D2C5A6DCA002DACB9;
 			packageReferences = (
@@ -302,9 +349,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9369D402C5EB51E00D05501 /* Localizable.strings in Resources */,
 				E90C3E962C5A6DCC002DACB9 /* LaunchScreen.storyboard in Resources */,
-				E90C3E932C5A6DCC002DACB9 /* Assets.xcassets in Resources */,
 				E90C3E912C5A6DCA002DACB9 /* Main.storyboard in Resources */,
+				E9369D292C5EA09200D05501 /* InfoPlist.strings in Resources */,
+				E9369D4A2C5EB77500D05501 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +375,7 @@
 				E90C3ECB2C5A7304002DACB9 /* SettingViewController.swift in Sources */,
 				E90C3EC32C5A71BB002DACB9 /* Extension.swift in Sources */,
 				E90C3EC12C5A718E002DACB9 /* TabbarViewController.swift in Sources */,
+				E9369D232C5E633C00D05501 /* SoundModule.swift in Sources */,
 				E90C3EC52C5A729F002DACB9 /* CalendarViewController.swift in Sources */,
 				E90C3EA82C5A6EBF002DACB9 /* CircularSlider.swift in Sources */,
 				E9E81A7B2C5BD662005A82E6 /* RealmDataModel.swift in Sources */,
@@ -340,6 +390,12 @@
 			isa = PBXVariantGroup;
 			children = (
 				E90C3E902C5A6DCA002DACB9 /* Base */,
+				E9369D2C2C5EA57100D05501 /* ko */,
+				E9369D2F2C5EA57A00D05501 /* ja */,
+				E9369D322C5EA5BB00D05501 /* zh-Hans */,
+				E9369D352C5EA5BF00D05501 /* zh-Hant */,
+				E9369D382C5EA5F300D05501 /* ru */,
+				E9369D3B2C5EA5FD00D05501 /* vi */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -348,8 +404,42 @@
 			isa = PBXVariantGroup;
 			children = (
 				E90C3E952C5A6DCC002DACB9 /* Base */,
+				E9369D2D2C5EA57100D05501 /* ko */,
+				E9369D302C5EA57A00D05501 /* ja */,
+				E9369D332C5EA5BB00D05501 /* zh-Hans */,
+				E9369D362C5EA5BF00D05501 /* zh-Hant */,
+				E9369D392C5EA5F300D05501 /* ru */,
+				E9369D3C2C5EA5FD00D05501 /* vi */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E9369D2B2C5EA09200D05501 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9369D2A2C5EA09200D05501 /* en */,
+				E9369D2E2C5EA57100D05501 /* ko */,
+				E9369D312C5EA57A00D05501 /* ja */,
+				E9369D342C5EA5BB00D05501 /* zh-Hans */,
+				E9369D372C5EA5BF00D05501 /* zh-Hant */,
+				E9369D3A2C5EA5F400D05501 /* ru */,
+				E9369D3D2C5EA5FD00D05501 /* vi */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E9369D422C5EB51E00D05501 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9369D412C5EB51E00D05501 /* en */,
+				E9369D432C5EB52000D05501 /* zh-Hans */,
+				E9369D442C5EB52300D05501 /* zh-Hant */,
+				E9369D452C5EB52400D05501 /* ja */,
+				E9369D462C5EB52400D05501 /* vi */,
+				E9369D472C5EB52500D05501 /* ru */,
+				E9369D482C5EB52500D05501 /* ko */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -360,6 +450,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -407,7 +498,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -423,6 +514,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -464,7 +556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -480,10 +572,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2024080401;
 				DEVELOPMENT_TEAM = 8Y6GZNH939;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FocusTimer/Supporting/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -494,12 +587,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ggasoon2.FocusTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -509,10 +606,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2024080401;
 				DEVELOPMENT_TEAM = 8Y6GZNH939;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FocusTimer/Supporting/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -523,12 +621,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ggasoon2.FocusTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

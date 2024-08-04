@@ -357,4 +357,15 @@ private func createKoKRFormatter() -> DateFormatter {
     return dateFormatter
 }
 
+extension String {
+    
+    var localized: String {
+        return NSLocalizedString(self, tableName: "Localizable", value: self, comment: "")
+    }
+    
+    func localizedFormat(_ arguments: CVarArg...) -> String {
+        let localizedValue = self.localized
+        return String(format: localizedValue, arguments: arguments)
+    }
+}
 

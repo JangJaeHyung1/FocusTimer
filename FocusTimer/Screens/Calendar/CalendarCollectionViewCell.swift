@@ -114,6 +114,7 @@ class CalendarCollectionViewCell: FSCalendarCell {
             // 데이터가 있을때
             timeLbl.isHidden = false
             timeLblBGView.isHidden = false
+//            setTimeLblBGView(second: presentable.seconds)
             timeLbl.text = TimeConvertion.shared.convertMinute(seconds: presentable.seconds)
             if isToday {
                 dateLbl.textColor = BaseColor.black
@@ -132,4 +133,27 @@ class CalendarCollectionViewCell: FSCalendarCell {
             }
         }
     }
+    // 0~3 1시
+    // 3~5 4시
+    // 5~8 6 시
+    // 8~12 9
+    // 12+ 13시간
+//    private func setTimeLblBGView(second: Int) {
+//        if second < 3600 * 3 {
+//            timeLbl.textColor = BaseColor.black
+//            timeLblBGView.backgroundColor = .systemGray6
+//        } else if second <  3600 * 5 {
+//            timeLbl.textColor = BaseColor.black
+//            timeLblBGView.backgroundColor = .systemGray4
+//        } else if second <  3600 * 8 {
+//            timeLbl.textColor = BaseColor.black
+//            timeLblBGView.backgroundColor = .systemGray2
+//        } else if second <  3600 * 12 {
+//            timeLbl.textColor = BaseColor.black
+//            timeLblBGView.backgroundColor = .systemGray
+//        } else {
+//            timeLbl.textColor = .white
+//            timeLblBGView.backgroundColor = .darkGray
+//        }
+//    }
 }

@@ -9,6 +9,7 @@ class TabbarViewController: UITabBarController  {
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
+        view.isHidden = true
         return view
     }()
     

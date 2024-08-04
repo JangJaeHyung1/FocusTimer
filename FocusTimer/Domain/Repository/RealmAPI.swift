@@ -16,11 +16,16 @@ class RealmAPI {
     func save(item: DataModel) throws -> Bool {
         do {
             let realm = try Realm()
-            let oldData = realm.objects(RealmDataModel.self).filter{ $0.date == item.date }.first
+            let oldData = realm.objects(RealmDataModel.self).filter{ $0.date.summary == item.date.summary }.first
+            
+            print("item.date.summary:\(item.date.summary)")
+            print("oldData:\(oldData?.date.summary)")
             try realm.write {
+                print("123")
                 if let oldData = oldData {
+                    let oldDataTime: Int = oldData.seconds
                     realm.delete(oldData)
-                    let newData = RealmDataModel(date: item.date, seconds: item.seconds + oldData.seconds)
+                    let newData = RealmDataModel(date: item.date, seconds: item.seconds + oldDataTime)
                     realm.add(newData)
                 } else {
                     let newData = RealmDataModel(date: item.date, seconds: item.seconds)
@@ -49,7 +54,6 @@ class RealmAPI {
                 return lhs.date > rhs.date
             })
             debugPrint("🔵 Realm API load success")
-//            debugPrint("🔵 Realm API load success : \(data)")
             return data
         } catch {
             debugPrint("❌ Realm API load error: \(error.localizedDescription)")

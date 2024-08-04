@@ -61,9 +61,9 @@ class CalendarViewController: UIViewController {
         setUp()
     }
     override func viewWillAppear(_ animated: Bool) {
-        if self.records.count != LoadData.items.count {
-            self.records = LoadData.items
-            calendarView.reloadData()
+        self.records = LoadData.items
+        DispatchQueue.main.async {
+            self.calendarView.reloadData()
         }
     }
     

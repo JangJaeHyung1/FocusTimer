@@ -7,6 +7,11 @@
 
 import UIKit
 
+
+enum SetColors: Int {
+    case red = 0
+    case dark = 1
+}
 class CircularSlider: UIControl {
     private var trackLayer = CAShapeLayer()
     private var progressLayer = CAShapeLayer()
@@ -146,6 +151,7 @@ class CircularSlider: UIControl {
                 labelLayer.foregroundColor = UIColor.black.cgColor
                 labelLayer.alignmentMode = .center
                 labelLayer.contentsScale = UIScreen.main.scale
+                labelLayer.font = UIFont.systemFont(ofSize: 16, weight: .light)
                 labelLayer.frame = labelRect
                 labelsLayer.addSublayer(labelLayer)
             } else {
@@ -207,5 +213,16 @@ class CircularSlider: UIControl {
     
     func getValue() -> CGFloat {
         return value
+    }
+    func setColor(color: SetColors) {
+        if color == .red {
+            fillLayer.fillColor = UIColor(red: 255 / 255, green: 204 / 255, blue: 204 / 255, alpha: 1).cgColor
+            progressLayer.strokeColor = UIColor(red: 255 / 255, green: 51 / 255, blue: 51 / 255, alpha: 1).cgColor
+            thumbLayer.strokeColor = UIColor(red: 255 / 255, green: 51 / 255, blue: 51 / 255, alpha: 1).cgColor
+        } else {
+            progressLayer.strokeColor = UIColor.black.cgColor
+            thumbLayer.strokeColor = UIColor.black.cgColor
+            fillLayer.fillColor = UIColor(red: 206 / 255, green: 206 / 255, blue: 206 / 255, alpha: 1).cgColor
+        }
     }
 }

@@ -15,9 +15,12 @@ struct DataModel: Codable {
 
 struct Dummy {
     static var data: [DataModel] =
-    [.init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 04))!, seconds: 5),
-     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 08))!, seconds: 853),
-     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 12))!, seconds: 123),
-     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 21))!, seconds: 3754),
+    [.init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 05))!, seconds: 3600 + 1800),
+     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 09))!, seconds: 3600 * 4),
+     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 13))!, seconds: 3600 * 6 + 1800),
+     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 15))!, seconds: 3600 * 9 + 900),
+     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 17))!, seconds: 3600 * 13),
+     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 19))!, seconds: 3600 * 12 + 900),
+     .init(date: Calendar.current.date(from: DateComponents(year: 2024, month: 07, day: 22))!, seconds: 3000),
     ]
 }
