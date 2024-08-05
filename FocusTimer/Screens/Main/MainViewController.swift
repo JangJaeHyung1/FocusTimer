@@ -117,7 +117,9 @@ class MainViewController: UIViewController {
         view.addSubview(centerCircle)
 //        
         circularSlider.snp.makeConstraints { make in
-            make.width.height.equalTo(300)
+            make.leading.equalToSuperview().offset(42)
+            make.trailing.equalToSuperview().offset(-42)
+            make.height.equalTo(circularSlider.snp.width)
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
         }
