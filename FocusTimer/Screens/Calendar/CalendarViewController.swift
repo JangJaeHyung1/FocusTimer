@@ -61,12 +61,12 @@ class CalendarViewController: UIViewController {
         setUp()
     }
     override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = false
         self.records = LoadData.items
         DispatchQueue.main.async {
             self.calendarView.reloadData()
         }
     }
-    
     init() {
         super.init(nibName: nil, bundle: nil)
     }

@@ -50,6 +50,9 @@ class SettingViewController: UIViewController {
         view.backgroundColor = .systemGray6
         setUp()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
 
 }
 extension SettingViewController {

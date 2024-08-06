@@ -160,6 +160,10 @@ class MainViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
         circularSlider.setValue(0.026)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = true
+    }
     @objc func updateCircleColor(_ notification: Notification) {
         guard let index = notification.object as? Int else { return }
         circularSlider.setColor(color: SetColors(rawValue: index) ?? .red)
