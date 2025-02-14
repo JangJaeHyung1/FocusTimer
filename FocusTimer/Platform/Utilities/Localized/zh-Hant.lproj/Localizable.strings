@@ -18,3 +18,15 @@
 "pause" = "暫停";
 "end" = "計時器完成";
 "focus_on" = "專注。";
+
+"Purchase" = "購買去廣告功能🙏";
+"Restore" = "恢復購買";
+"Products" = "商品";
+
+"purchase_success" = "🎉 購買完成！廣告移除已應用。";
+"purchase_failed" = "❌ 購買失敗！請重試。";
+"restore_success" = "🔄 恢復完成！廣告移除已應用。";
+"restore_failed" = "❌ 恢復失敗！請重試。";
+"deferred" = "⏳ 付款正在處理中，請稍候。";
+"unknown" = "⚠️ 未知的付款狀態。";
+"ad_already_removed" = "廣告移除已啟用。";

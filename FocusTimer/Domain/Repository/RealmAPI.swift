@@ -18,10 +18,10 @@ class RealmAPI {
             let realm = try Realm()
             let oldData = realm.objects(RealmDataModel.self).filter{ $0.date.summary == item.date.summary }.first
             
-            print("item.date.summary:\(item.date.summary)")
-            print("oldData:\(oldData?.date.summary)")
+//            print("item.date.summary:\(item.date.summary)")
+//            print("oldData:\(oldData?.date.summary)")
             try realm.write {
-                print("123")
+//                print("123")
                 if let oldData = oldData {
                     let oldDataTime: Int = oldData.seconds
                     realm.delete(oldData)

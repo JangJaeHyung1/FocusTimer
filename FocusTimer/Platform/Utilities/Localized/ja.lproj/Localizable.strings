@@ -18,3 +18,15 @@
 "pause" = "一時停止";
 "end" = "タイマーが完了しました";
 "focus_on" = "集中した。";
+
+"Purchase" = "広告削除機能を購入🙏";
+"Restore" = "購入を復元";
+"Products" = "商品";
+
+"purchase_success" = "🎉 購入完了! 広告削除が適用されました。";
+"purchase_failed" = "❌ 購入に失敗しました! もう一度試してください。";
+"restore_success" = "🔄 復元完了! 広告削除が適用されました。";
+"restore_failed" = "❌ 復元に失敗しました! もう一度試してください。";
+"deferred" = "⏳ 支払いが保留中です。お待ちください。";
+"unknown" = "⚠️ 不明な支払い状態です。";
+"ad_already_removed" = "広告の削除は既に有効です。";

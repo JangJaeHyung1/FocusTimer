@@ -89,7 +89,8 @@ class CalendarCollectionViewCell: FSCalendarCell {
     
     private func setConstraints() {
         timeLblBGView.snp.makeConstraints { make in
-            make.width.equalTo(timeLbl).offset(10)
+            make.leading.equalToSuperview().offset(1)
+            make.trailing.equalToSuperview().offset(-1)
             make.height.equalTo(timeLbl).offset(4)
             make.center.equalTo(timeLbl)
         }

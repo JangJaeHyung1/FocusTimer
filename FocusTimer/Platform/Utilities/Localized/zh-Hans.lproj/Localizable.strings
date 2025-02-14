@@ -17,3 +17,15 @@
 "pause" = "暂停";
 "end" = "计时器完成";
 "focus_on" = "专注。";
+
+"Purchase" = "购买去广告功能🙏";
+"Restore" = "恢复购买";
+"Products" = "商品";
+
+"purchase_success" = "🎉 购买完成！广告移除已应用。";
+"purchase_failed" = "❌ 购买失败！请重试。";
+"restore_success" = "🔄 恢复完成！广告移除已应用。";
+"restore_failed" = "❌ 恢复失败！请重试。";
+"deferred" = "⏳ 付款正在处理中，请稍候。";
+"unknown" = "⚠️ 未知的付款状态。";
+"ad_already_removed" = "广告移除已启用。";

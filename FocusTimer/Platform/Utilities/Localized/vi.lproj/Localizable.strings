@@ -17,3 +17,15 @@
 "pause" = "Tạm ngừng";
 "end" = "Đã hoàn thành bộ hẹn giờ";
 "focus_on" = "tập trung.";
+
+"Purchase" = "Mua chức năng xóa quảng cáo🙏";
+"Restore" = "Khôi phục giao dịch mua";
+"Products" = "Sản phẩm";
+
+"purchase_success" = "🎉 Mua hàng thành công! Quảng cáo đã được xóa.";
+"purchase_failed" = "❌ Mua hàng không thành công! Vui lòng thử lại.";
+"restore_success" = "🔄 Khôi phục thành công! Quảng cáo đã được xóa.";
+"restore_failed" = "❌ Khôi phục không thành công! Vui lòng thử lại.";
+"deferred" = "⏳ Thanh toán đang chờ xử lý. Vui lòng đợi.";
+"unknown" = "⚠️ Trạng thái thanh toán không xác định.";
+"ad_already_removed" = "Xóa quảng cáo đã được kích hoạt.";

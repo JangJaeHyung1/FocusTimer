@@ -16,8 +16,16 @@ class TabbarViewController: UITabBarController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleTabBar(_:)), name: Notification.Name("ToggleTabBar"), object: nil)
         self.selectedIndex = 1
         overrideUserInterfaceStyle = .light
+    }
+    
+    @objc private func toggleTabBar(_ notification: Notification) {
+        guard let isLandscape = notification.object as? Bool else { return }
+        UIView.animate(withDuration: 0.3) {
+            self.tabBar.isHidden = isLandscape
+        }
     }
     
     override func viewDidLayoutSubviews() {

@@ -3,9 +3,11 @@
 import UIKit
 import SnapKit
 import RxSwift
+import GoogleMobileAds
 
-
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, GADBannerViewDelegate {
+    var getAdRemovalStatus: Bool = false
+    private var bannerView: GADBannerView!
     private var circularSlider = CircularSlider()
     private var soundModule = SoundModule()
     var seconds: Int = 0
@@ -99,6 +101,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateCircleColor(_:)),
                                          name: Notification.Name("selectedIndex"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTimeLbl(_:)),
@@ -115,13 +118,28 @@ class MainViewController: UIViewController {
         view.addSubview(timeView)
         timeView.addSubview(timeLbl)
         view.addSubview(centerCircle)
-//        
+        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
+
+        let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+        bannerView = GADBannerView(adSize: adaptiveSize)
+
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        
+        bannerView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top) // SafeArea의 상단과 맞춤
+            make.trailing.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.width) // 전체 너비의 90% 크기로 설정 (조절 가능)
+            make.height.equalTo(adaptiveSize.size.height) // AdMob에서 제공하는 배너 높이 적용
+        }
+        loadNativeAd()
         circularSlider.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(42)
             make.trailing.equalToSuperview().offset(-42)
             make.height.equalTo(circularSlider.snp.width)
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
+            make.top.equalTo(bannerView.snp.bottom).offset(50)
+//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
         }
         timeView.snp.makeConstraints { make in
             make.top.equalTo(circularSlider.snp.bottom).offset(10)
@@ -132,12 +150,18 @@ class MainViewController: UIViewController {
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
         }
-        let btnBottomPadding = 138 / 812 * UIScreen.main.bounds.height
+        let hasNotch = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0 > 0
+        
+        let btnBottomPadding = ( 138 / 812 ) * UIScreen.main.bounds.height
         btn.snp.makeConstraints { make in
             make.width.equalTo(108)
             make.height.equalTo(64)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-btnBottomPadding)
+            if hasNotch {
+                make.bottom.equalToSuperview().offset(-btnBottomPadding)
+            } else {
+                make.bottom.equalToSuperview().offset(-10)
+            }
         }
         resumeBtn.snp.makeConstraints { make in
             make.trailing.equalTo(view.snp.centerX).offset(-20)
@@ -160,9 +184,163 @@ class MainViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
         circularSlider.setValue(0.026)
     }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if UIDevice.current.orientation.rawValue != 2 {
+            updateLayout()
+        }
+    }
+    private func updateLayout() {
+        timeView.snp.removeConstraints()
+        circularSlider.snp.removeConstraints()
+        let hasNotch = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0 > 0
+        let isLandscape = UIDevice.current.orientation.isLandscape
+        NotificationCenter.default.post(name: Notification.Name("ToggleTabBar"), object: isLandscape)
+        if !getAdRemovalStatus {
+            if isLandscape {
+                bannerView.snp.updateConstraints { make in
+                    make.width.equalTo(UIScreen.main.bounds.width * 0.5)
+                }
+            } else {
+                bannerView.snp.updateConstraints { make in
+                    make.width.equalTo(UIScreen.main.bounds.width)
+                }
+            }
+        }
+        
+        timeView.snp.remakeConstraints { make in
+            if isLandscape {
+                make.centerY.equalToSuperview().offset(-60)
+                make.leading.equalTo(circularSlider.snp.trailing).offset(40) // 여백 추가
+                make.trailing.equalToSuperview().offset(-40) // 우측 여백
+            } else {
+                make.top.equalTo(circularSlider.snp.bottom).offset(10)
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(btn.snp.top)
+            }
+        }
+        
+        let padding: CGFloat = isLandscape ? 40 : 42
+        
+        circularSlider.snp.remakeConstraints { make in
+            if isLandscape {
+                
+                if hasNotch {
+                    make.leading.equalToSuperview().offset(padding + 60)
+                } else {
+                    make.leading.equalToSuperview().offset(padding + 16)
+                }
+                make.centerY.equalToSuperview()
+                // 광고 제거 여부에 따라 크기 변경
+                make.width.equalTo(view.snp.height).multipliedBy(0.7)
+                make.height.equalTo(view.snp.height).multipliedBy(0.7)
+                
+//                make.bottom.equalToSuperview().offset(-60)
+            } else {
+                make.leading.equalToSuperview().offset(42)
+                make.trailing.equalToSuperview().offset(-42)
+                make.centerX.equalToSuperview()
+                if getAdRemovalStatus {
+                    make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
+                } else {
+                    make.top.equalTo(bannerView.snp.bottom).offset(50)
+                }
+                make.height.equalTo(circularSlider.snp.width).multipliedBy(1.0)
+            }
+        }
+        
+        
+
+        btn.snp.remakeConstraints { make in
+            if isLandscape {
+                make.centerX.equalTo(timeView) // 오른쪽 영역에서 중앙 정렬
+                make.top.equalTo(timeView.snp.bottom).offset(80)
+            } else {
+                let btnBottomPadding = 138 / 812 * UIScreen.main.bounds.height
+                make.centerX.equalToSuperview()
+                if hasNotch {
+                    make.bottom.equalToSuperview().offset(-btnBottomPadding)
+                } else {
+                    make.bottom.equalToSuperview().offset(-80)
+                }
+                
+            }
+            make.width.equalTo(108)
+            make.height.equalTo(64)
+        }
+        
+        resumeBtn.snp.remakeConstraints { make in
+            if isLandscape {
+                make.trailing.equalTo(btn.snp.leading).offset(5)
+                make.centerY.equalTo(btn)
+            } else {
+                make.trailing.equalTo(view.snp.centerX).offset(-20)
+                make.centerY.equalTo(btn)
+            }
+            make.width.height.equalTo(btn)
+        }
+        
+        resetBtn.snp.remakeConstraints { make in
+            if isLandscape {
+                make.leading.equalTo(btn.snp.trailing).offset(-5)
+                make.centerY.equalTo(btn)
+            } else {
+                make.leading.equalTo(view.snp.centerX).offset(20)
+                make.centerY.equalTo(btn)
+            }
+            make.width.height.equalTo(btn)
+        }
+
+        centerCircle.snp.remakeConstraints { make in
+            make.center.equalTo(circularSlider)
+            make.width.height.equalTo(16)
+        }
+    
+        
+        
+    }
+    
+    func loadNativeAd() {
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174" // test
+        bannerView.adUnitID = "ca-app-pub-1128227668000865/1572761106"
+        bannerView.rootViewController = self
+        bannerView.delegate = self
+        bannerView.load(GADRequest())
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        
+        // This example doesn't give width or height constraints, as the provided
+        // ad size gives the banner an intrinsic content size to size the view.
+        view.addConstraints(
+          [NSLayoutConstraint(item: bannerView,
+                              attribute: .top,
+                              relatedBy: .equal,
+                              toItem: view.safeAreaLayoutGuide,
+                              attribute: .top,
+                              multiplier: 1,
+                              constant: 0),
+          NSLayoutConstraint(item: bannerView,
+                              attribute: .centerX,
+                              relatedBy: .equal,
+                              toItem: view,
+                              attribute: .centerX,
+                              multiplier: 1,
+                              constant: 0)
+          ])
+      }
     
     override func viewWillAppear(_ animated: Bool) {
         UIApplication.shared.isIdleTimerDisabled = true
+        getAdRemovalStatus = InAppPurchaseManager.shared.getAdRemovalStatus()
+        if getAdRemovalStatus {
+            handleAdRemoval()
+        }
+    }
+    
+    func handleAdRemoval() {
+        bannerView?.removeFromSuperview()
+        bannerView = nil
     }
     @objc func updateCircleColor(_ notification: Notification) {
         guard let index = notification.object as? Int else { return }
@@ -362,3 +540,4 @@ extension MainViewController {
         }
     }
 }
+

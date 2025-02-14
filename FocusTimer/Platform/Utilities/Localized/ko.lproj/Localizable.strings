@@ -17,3 +17,15 @@
 "pause" = "Pause";
 "end" = "타이머 종료";
 "focus_on" = "집중하셨습니다.";
+
+"Purchase" = "광고제거기능 구매하기🙏";
+"Restore" = "구매 복원하기";
+"Products" = "상품";
+
+"purchase_success" = "🎉 구매 완료! 광고 제거가 적용되었습니다.";
+"purchase_failed" = "❌ 결제 실패! 다시 시도해 주세요.";
+"restore_success" = "🔄 구매 복원 완료! 광고 제거가 적용되었습니다.";
+"restore_failed" = "❌ 구매 복원 실패! 다시 시도해 주세요.";
+"deferred" = "⏳ 결제가 보류 중입니다. 잠시만 기다려주세요.";
+"unknown" = "⚠️ 알 수 없는 결제 상태입니다.";
+"ad_already_removed" = "이미 광고 제거가 활성화되어 있습니다.";

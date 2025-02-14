@@ -17,3 +17,15 @@
 "pause" = "Pause";
 "end" = "Timer completed";
 "focus_on" = "focused.";
+
+"Purchase" = "Purchase Ad Removal🙏";
+"Restore" = "Restore Purchase";
+"Products" = "Products";
+
+"purchase_success" = "🎉 Purchase completed! Ad removal applied.";
+"purchase_failed" = "❌ Purchase failed! Please try again.";
+"restore_success" = "🔄 Restore completed! Ad removal applied.";
+"restore_failed" = "❌ Restore failed! Please try again.";
+"deferred" = "⏳ Payment is pending. Please wait.";
+"unknown" = "⚠️ Unknown payment status.";
+"ad_already_removed" = "Ad removal is already active.";

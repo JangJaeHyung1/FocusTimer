@@ -7,6 +7,10 @@
 
 import UIKit
 import UserNotifications
+import GoogleMobileAds
+import AppTrackingTransparency
+
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options: authOptions,
             completionHandler: { _, _ in }
         )
+        GADMobileAds.sharedInstance().start()
+        
         return true
     }
 
@@ -31,7 +37,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // 여기서 호출!!
+        requestTrackingAuthorization()
+    }
+    
+    // 추적 접근 요청 메서드
+    private func requestTrackingAuthorization() {
+        if #available(iOS 14, *) {
+            if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
+            }
+        }
+    }
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.

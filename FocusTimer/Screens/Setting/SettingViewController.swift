@@ -10,6 +10,8 @@ import SnapKit
 import RxSwift
 
 class SettingViewController: UIViewController {
+    let purchaseManager = InAppPurchaseManager.shared
+    
     private let edgeView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
@@ -24,13 +26,17 @@ class SettingViewController: UIViewController {
     
     var headerArray: [String] = [
         "clock_theme".localized,
-        "setting".localized
+        "setting".localized,
+        "Products".localized
         ]
     var textArray: [[String]] = [
         ["red_color".localized,
          "black_color".localized,],
         ["show_time_countdown".localized,
-         "enabled_end_sound".localized,]
+         "enabled_end_sound".localized,
+        ],
+        ["Purchase".localized,
+         "Restore".localized]
     ]
     var tableView: UITableView!
     init() {
@@ -49,6 +55,40 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         setUp()
+        
+        
+        purchaseManager.fetchProduct(with: InAppProducts.product)
+            .subscribe(onNext: { product in
+                if let product = product {
+                    print("상품 준비 완료: \(product.localizedTitle)")
+                }
+            }).disposed(by: disposeBag)
+        
+        
+        
+        // 결과 구독
+        purchaseManager.purchaseResult
+            .subscribe(onNext: { result in
+                switch result {
+                case .success:
+                    print("구매 완료. 광고 제거 적용됨.")
+                case .failure(let error):
+                    print("구매 실패: \(error.localizedDescription)")
+                }
+            }).disposed(by: disposeBag)
+        
+        
+        purchaseManager.restoreResult
+            .subscribe(onNext: { result in
+                switch result {
+                case .success:
+                    print("구매 복원 완료. 광고 제거 적용됨.")
+                case .failure(let error):
+                    print("구매 복원 실패: \(error.localizedDescription)")
+                }
+            }).disposed(by: disposeBag)
+        
+            
     }
     override func viewWillAppear(_ animated: Bool) {
         UIApplication.shared.isIdleTimerDisabled = false
@@ -123,12 +163,23 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.isSelected = false
         cell.selectionStyle = .none
+        cell.accessoryType = .none
+        cell.textLabel?.textColor = .label
+        cell.textLabel?.text = ""
+        
         cell.textLabel?.text = textArray[indexPath.section][indexPath.row]
         if indexPath.section == 0 {
             cell.isSelected = indexPath.row == self.selectedIndexPath
             cell.accessoryView = .none
             cell.accessoryType = cell.isSelected ? .checkmark : .none
+        } else if indexPath.section == 2 {
+            if indexPath.row == 0 {
+//                cell.textLabel?.textColor = .systemRed
+            } else {
+                
+            }
         } else {
             cell.accessoryType = .none
             let switchView = UISwitch()
@@ -161,6 +212,14 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             NotificationCenter.default.post(name: Notification.Name("selectedIndex"),
                                                          object: indexPath.row)
             self.tableView.reloadData()
+        } else if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                // 구매 버튼을 누를 때 실행
+                purchaseManager.purchaseProduct()
+            } else {
+                // 구매 복원 버튼을 누를 때 실행
+                purchaseManager.restorePurchases()
+            }
         }
     }
 }
