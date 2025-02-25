@@ -194,7 +194,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         timeView.snp.removeConstraints()
         circularSlider.snp.removeConstraints()
         let hasNotch = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0 > 0
-        let isLandscape = UIDevice.current.orientation.isLandscape
+        let isLandscape = UIScreen.main.bounds.width > UIScreen.main.bounds.height
         NotificationCenter.default.post(name: Notification.Name("ToggleTabBar"), object: isLandscape)
         if !getAdRemovalStatus {
             if isLandscape {
@@ -301,11 +301,19 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func loadNativeAd() {
-//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174" // test
-        bannerView.adUnitID = "ca-app-pub-1128227668000865/1572761106"
-        bannerView.rootViewController = self
-        bannerView.delegate = self
-        bannerView.load(GADRequest())
+        let currentAdRemovalStatus = InAppPurchaseManager.shared.getAdRemovalStatus()
+        print("🟠didnt loadNativeAd")
+        if !currentAdRemovalStatus {
+            print("🟡loadNativeAd")
+//                    bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174" // test
+            bannerView.adUnitID = "ca-app-pub-1128227668000865/1572761106"
+            bannerView.rootViewController = self
+            bannerView.delegate = self
+            bannerView.load(GADRequest())
+        }
+    }
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        print("Failed to load ad: \(error.localizedDescription)")
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
@@ -332,16 +340,20 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         UIApplication.shared.isIdleTimerDisabled = true
-        getAdRemovalStatus = InAppPurchaseManager.shared.getAdRemovalStatus()
-        if getAdRemovalStatus {
+        let currentAdRemovalStatus = InAppPurchaseManager.shared.getAdRemovalStatus()
+        if currentAdRemovalStatus && !getAdRemovalStatus {
+            getAdRemovalStatus = true
             handleAdRemoval()
         }
     }
     
     func handleAdRemoval() {
+        guard bannerView != nil else { return } // 이미 제거된 경우 재호출 방지
         bannerView?.removeFromSuperview()
         bannerView = nil
+        print("🟠 remove ad")
     }
+    
     @objc func updateCircleColor(_ notification: Notification) {
         guard let index = notification.object as? Int else { return }
         circularSlider.setColor(color: SetColors(rawValue: index) ?? .red)
