@@ -1,0 +1,15 @@
+# Local Supabase/Xcode configuration
+Config/Secrets.xcconfig
+.env
+.env.*
+!.env.example
+
+# Supabase backend files
+supabase/
+
+# Xcode user state
+xcuserdata/
+*.xcuserstate
+
+# macOS
+.DS_Store
