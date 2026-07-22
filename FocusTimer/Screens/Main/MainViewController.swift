@@ -3,11 +3,9 @@
 import UIKit
 import SnapKit
 import RxSwift
-import GoogleMobileAds
+import StoreKit
 
-class MainViewController: UIViewController, GADBannerViewDelegate {
-    var getAdRemovalStatus: Bool = false
-    private var bannerView: GADBannerView!
+class MainViewController: UIViewController {
     private var circularSlider = CircularSlider()
     private var soundModule = SoundModule()
     var seconds: Int = 0
@@ -83,7 +81,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.numberOfLines = 1
         lbl.textAlignment = .center
-        lbl.font = .systemFont(ofSize: 48, weight: .ultraLight)
+        lbl.font = .monospacedDigitSystemFont(ofSize: 48, weight: .ultraLight)
         lbl.textColor = .darkGray
         lbl.lineBreakMode = .byWordWrapping
         lbl.isHidden = true
@@ -118,28 +116,12 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         view.addSubview(timeView)
         timeView.addSubview(timeLbl)
         view.addSubview(centerCircle)
-        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
-
-        let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
-        bannerView = GADBannerView(adSize: adaptiveSize)
-
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        
-        bannerView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top) // SafeArea의 상단과 맞춤
-            make.trailing.equalToSuperview()
-            make.width.equalTo(UIScreen.main.bounds.width) // 전체 너비의 90% 크기로 설정 (조절 가능)
-            make.height.equalTo(adaptiveSize.size.height) // AdMob에서 제공하는 배너 높이 적용
-        }
-        loadNativeAd()
         circularSlider.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(42)
             make.trailing.equalToSuperview().offset(-42)
             make.height.equalTo(circularSlider.snp.width)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bannerView.snp.bottom).offset(50)
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
         }
         timeView.snp.makeConstraints { make in
             make.top.equalTo(circularSlider.snp.bottom).offset(10)
@@ -196,18 +178,6 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         let hasNotch = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0 > 0
         let isLandscape = UIScreen.main.bounds.width > UIScreen.main.bounds.height
         NotificationCenter.default.post(name: Notification.Name("ToggleTabBar"), object: isLandscape)
-        if !getAdRemovalStatus {
-            if isLandscape {
-                bannerView.snp.updateConstraints { make in
-                    make.width.equalTo(UIScreen.main.bounds.width * 0.5)
-                }
-            } else {
-                bannerView.snp.updateConstraints { make in
-                    make.width.equalTo(UIScreen.main.bounds.width)
-                }
-            }
-        }
-        
         timeView.snp.remakeConstraints { make in
             if isLandscape {
                 make.centerY.equalToSuperview().offset(-60)
@@ -231,7 +201,6 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
                     make.leading.equalToSuperview().offset(padding + 16)
                 }
                 make.centerY.equalToSuperview()
-                // 광고 제거 여부에 따라 크기 변경
                 make.width.equalTo(view.snp.height).multipliedBy(0.7)
                 make.height.equalTo(view.snp.height).multipliedBy(0.7)
                 
@@ -240,11 +209,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
                 make.leading.equalToSuperview().offset(42)
                 make.trailing.equalToSuperview().offset(-42)
                 make.centerX.equalToSuperview()
-                if getAdRemovalStatus {
-                    make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
-                } else {
-                    make.top.equalTo(bannerView.snp.bottom).offset(50)
-                }
+                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(42)
                 make.height.equalTo(circularSlider.snp.width).multipliedBy(1.0)
             }
         }
@@ -300,58 +265,8 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         
     }
     
-    func loadNativeAd() {
-        let currentAdRemovalStatus = InAppPurchaseManager.shared.getAdRemovalStatus()
-        print("🟠didnt loadNativeAd")
-        if !currentAdRemovalStatus {
-            print("🟡loadNativeAd")
-//                    bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174" // test
-            bannerView.adUnitID = "ca-app-pub-1128227668000865/1572761106"
-            bannerView.rootViewController = self
-            bannerView.delegate = self
-            bannerView.load(GADRequest())
-        }
-    }
-    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        print("Failed to load ad: \(error.localizedDescription)")
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        
-        // This example doesn't give width or height constraints, as the provided
-        // ad size gives the banner an intrinsic content size to size the view.
-        view.addConstraints(
-          [NSLayoutConstraint(item: bannerView,
-                              attribute: .top,
-                              relatedBy: .equal,
-                              toItem: view.safeAreaLayoutGuide,
-                              attribute: .top,
-                              multiplier: 1,
-                              constant: 0),
-          NSLayoutConstraint(item: bannerView,
-                              attribute: .centerX,
-                              relatedBy: .equal,
-                              toItem: view,
-                              attribute: .centerX,
-                              multiplier: 1,
-                              constant: 0)
-          ])
-      }
-    
     override func viewWillAppear(_ animated: Bool) {
         UIApplication.shared.isIdleTimerDisabled = true
-        let currentAdRemovalStatus = InAppPurchaseManager.shared.getAdRemovalStatus()
-        if currentAdRemovalStatus && !getAdRemovalStatus {
-            getAdRemovalStatus = true
-            handleAdRemoval()
-        }
-    }
-    
-    func handleAdRemoval() {
-        guard bannerView != nil else { return } // 이미 제거된 경우 재호출 방지
-        bannerView?.removeFromSuperview()
-        bannerView = nil
-        print("🟠 remove ad")
     }
     
     @objc func updateCircleColor(_ notification: Notification) {
@@ -452,6 +367,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
             resetBtn.isHidden = false
             resumeBtn.isHidden = false
             timer?.invalidate()
+            FocusTimerLiveActivityManager.shared.pause(seconds: seconds)
         } else {
             recordData = seconds
             showPause()
@@ -464,6 +380,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     // 종료된 상태
     private func showPause() {
         pushNotification(seconds: Double(seconds))
+        FocusTimerLiveActivityManager.shared.startOrResume(seconds: seconds)
         btn.isHidden = false
         resetBtn.isHidden = true
         resumeBtn.isHidden = true
@@ -490,6 +407,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
         timeLbl.isHidden = true
     }
     private func tappedReset() {
+        FocusTimerLiveActivityManager.shared.end()
         seconds = 0
         circularSlider.setValue(0.026)
         resetBtn.isHidden = true
@@ -509,6 +427,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
     private func stopTimer(isBackgroundToForeground: Bool = false) {
         Task {
             timer?.invalidate()
+            FocusTimerLiveActivityManager.shared.end()
             _ = try RealmAPI.shared.save(item: DataModel(date: Date(), seconds: recordData))
             fetch()
             let sw2: Bool = UserDefaults.standard.object(forKey: "sw2") as? Bool ?? true
@@ -516,6 +435,7 @@ class MainViewController: UIViewController, GADBannerViewDelegate {
                 soundModule.soundOutput(sw2: sw2)
             }
             showStart()
+            ReviewRequestManager.registerCompletedSession()
         }
     }
 }
@@ -553,3 +473,35 @@ extension MainViewController {
     }
 }
 
+private enum ReviewRequestManager {
+    private static let completedSessionCountKey = "review.completedSessionCount"
+    private static let lastRequestedVersionKey = "review.lastRequestedVersion"
+    private static let minimumCompletedSessions = 5
+
+    @MainActor
+    static func registerCompletedSession() {
+        let defaults = UserDefaults.standard
+        let completedSessionCount = defaults.integer(forKey: completedSessionCountKey) + 1
+        defaults.set(completedSessionCount, forKey: completedSessionCountKey)
+
+        guard completedSessionCount >= minimumCompletedSessions else { return }
+
+        let currentVersion = Bundle.main.object(
+            forInfoDictionaryKey: "CFBundleShortVersionString"
+        ) as? String ?? "unknown"
+        guard defaults.string(forKey: lastRequestedVersionKey) != currentVersion else { return }
+
+        guard let windowScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first(where: { $0.activationState == .foregroundActive }) else { return }
+
+        if #available(iOS 16.0, *) {
+            AppStore.requestReview(in: windowScene)
+        } else {
+            SKStoreReviewController.requestReview(in: windowScene)
+        }
+
+        defaults.set(currentVersion, forKey: lastRequestedVersionKey)
+        defaults.set(0, forKey: completedSessionCountKey)
+    }
+}

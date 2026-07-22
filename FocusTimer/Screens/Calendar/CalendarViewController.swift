@@ -47,12 +47,36 @@ class CalendarViewController: UIViewController {
         lbl.isUserInteractionEnabled = true
         return lbl
     }()
+
+    private let todayFocusTimeLabel = CalendarViewController.makeSummaryLabel()
+    private let weeklyFocusTimeLabel = CalendarViewController.makeSummaryLabel()
+    private let monthlyFocusTimeLabel = CalendarViewController.makeSummaryLabel()
+
+    private let summaryContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        view.layer.cornerRadius = 12
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private lazy var summaryStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            todayFocusTimeLabel,
+            weeklyFocusTimeLabel,
+            monthlyFocusTimeLabel
+        ])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 6
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
-    var currentPage: Date?
     let calendarCurrent = Calendar.current
-    let today: Date = Date()
-    var dateComponents = DateComponents()
     var records: [DataModel] = []
+    private var calendarHeightConstraint: Constraint?
     
     private let disposeBag = DisposeBag()
     
@@ -61,8 +85,10 @@ class CalendarViewController: UIViewController {
         setUp()
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = false
         self.records = LoadData.items
+        updateFocusTimeSummaries()
         DispatchQueue.main.async {
             self.calendarView.reloadData()
         }
@@ -77,6 +103,18 @@ class CalendarViewController: UIViewController {
 
 }
 extension CalendarViewController {
+    private static func makeSummaryLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = BaseColor.black
+        label.font = BaseFont.body4
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.75
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+
     private func setUp() {
         configure()
         setCalendar()
@@ -114,13 +152,15 @@ extension CalendarViewController {
         view.addSubview(rightBtn)
         view.addSubview(leftBtn)
         view.addSubview(titleLbl)
+        view.addSubview(summaryContainerView)
+        summaryContainerView.addSubview(summaryStackView)
     }
     
     private func setConstraints() {
         calendarView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(422 + 75)
+            calendarHeightConstraint = make.height.equalTo(422 + 75).priority(.high).constraint
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
             make.centerX.equalToSuperview()
         }
@@ -138,16 +178,62 @@ extension CalendarViewController {
             make.centerX.equalToSuperview()
             make.centerY.equalTo(leftBtn)
         }
+        summaryContainerView.snp.makeConstraints { make in
+            make.top.equalTo(calendarView.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+        }
+        summaryStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16))
+        }
+    }
+
+    private func updateFocusTimeSummaries(now: Date = Date()) {
+        let todaySeconds = totalFocusTime(in: .day, containing: now)
+        let weeklySeconds = totalFocusTime(in: .weekOfYear, containing: now)
+        let monthlySeconds = totalFocusTime(in: .month, containing: now)
+
+        todayFocusTimeLabel.text = "today_focus_time".localizedFormat(formatFocusHours(todaySeconds))
+        weeklyFocusTimeLabel.text = "weekly_focus_time".localizedFormat(formatFocusHours(weeklySeconds))
+        monthlyFocusTimeLabel.text = "monthly_focus_time".localizedFormat(formatFocusHours(monthlySeconds))
+    }
+
+    private func totalFocusTime(in component: Calendar.Component, containing date: Date) -> Int {
+        guard let interval = calendarCurrent.dateInterval(of: component, for: date) else { return 0 }
+
+        return records.reduce(into: 0) { total, record in
+            if interval.contains(record.date) {
+                total += record.seconds
+            }
+        }
+    }
+
+    private func formatFocusHours(_ seconds: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        formatter.roundingMode = .halfUp
+
+        let hours = Double(seconds) / 3600
+        let formattedHours = formatter.string(from: NSNumber(value: hours)) ?? "0"
+        return "focus_duration_format".localizedFormat(formattedHours)
     }
 }
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, UICollectionViewDelegateFlowLayout {
     
     private func moveCurrentPage(moveUp: Bool) {
+        var dateComponents = DateComponents()
         dateComponents.month = moveUp ? 1 : -1
-        currentPage = calendarCurrent.date(byAdding: dateComponents, to: currentPage ?? today)
-        self.calendarView.setCurrentPage(currentPage!, animated: true)
-        
+
+        guard let targetPage = calendarCurrent.date(
+            byAdding: dateComponents,
+            to: calendarView.currentPage
+        ) else { return }
+
+        calendarView.setCurrentPage(targetPage, animated: true)
     }
     
     private func setCalendar() {
@@ -185,10 +271,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, UICo
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        calendar.snp.updateConstraints { (make) in
-            make.height.equalTo(bounds.height)
-            // Do other updates
-        }
+        calendarHeightConstraint?.update(offset: bounds.height)
         self.view.layoutIfNeeded()
     }
     

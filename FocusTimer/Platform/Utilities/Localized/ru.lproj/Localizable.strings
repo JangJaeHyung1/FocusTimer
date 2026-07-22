@@ -18,7 +18,7 @@
 "end" = "Таймер завершен";
 "focus_on" = "сосредоточен.";
 
-"Purchase" = "Купить удаление рекламы🙏";
+"Purchase" = "(Хотя рекламы нет) Убрать рекламу..";
 "Restore" = "Восстановить покупку";
 "Products" = "Товары";
 
@@ -29,3 +29,12 @@
 "deferred" = "⏳ Оплата в ожидании. Пожалуйста, подождите.";
 "unknown" = "⚠️ Неизвестный статус платежа.";
 "ad_already_removed" = "Удаление рекламы уже активировано.";
+
+"today_focus_time" = "Фокус сегодня: %@";
+"weekly_focus_time" = "Фокус на этой неделе: %@";
+"monthly_focus_time" = "Фокус в этом месяце: %@";
+"focus_duration_format" = "%@ ч";
+
+"live_activity_title" = "Focus Timer";
+"live_activity_focusing" = "Фокус";
+"live_activity_paused" = "Пауза";

@@ -19,7 +19,7 @@
 "end" = "計時器完成";
 "focus_on" = "專注。";
 
-"Purchase" = "購買去廣告功能🙏";
+"Purchase" = "（雖然沒有廣告）移除廣告..";
 "Restore" = "恢復購買";
 "Products" = "商品";
 
@@ -30,3 +30,12 @@
 "deferred" = "⏳ 付款正在處理中，請稍候。";
 "unknown" = "⚠️ 未知的付款狀態。";
 "ad_already_removed" = "廣告移除已啟用。";
+
+"today_focus_time" = "今天的專注時間 %@";
+"weekly_focus_time" = "本週的專注時間 %@";
+"monthly_focus_time" = "本月的專注時間 %@";
+"focus_duration_format" = "%@小時";
+
+"live_activity_title" = "Focus Timer";
+"live_activity_focusing" = "專注中";
+"live_activity_paused" = "已暫停";

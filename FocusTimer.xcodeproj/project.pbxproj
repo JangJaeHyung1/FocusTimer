@@ -27,12 +27,10 @@
 		E90C3ECD2C5A73D6002DACB9 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3ECC2C5A73D6002DACB9 /* DataModel.swift */; };
 		E90C3ECF2C5A74CC002DACB9 /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3ECE2C5A74CC002DACB9 /* LoadData.swift */; };
 		E90C3EE22C5A8C66002DACB9 /* TimeConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */; };
-		E90C54522D5A4BE8003A3764 /* NativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C54512D5A4BE8003A3764 /* NativeAdView.swift */; };
 		E9369D232C5E633C00D05501 /* SoundModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9369D222C5E633C00D05501 /* SoundModule.swift */; };
 		E9369D292C5EA09200D05501 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9369D2B2C5EA09200D05501 /* InfoPlist.strings */; };
 		E9369D402C5EB51E00D05501 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9369D422C5EB51E00D05501 /* Localizable.strings */; };
 		E9369D4A2C5EB77500D05501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9369D492C5EB77500D05501 /* Assets.xcassets */; };
-		E975F4AA2D5CB1FC008048AB /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = E975F4A92D5CB1FC008048AB /* GoogleMobileAds */; };
 		E9A8343A2D5E552F000CCA95 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A834392D5E552E000CCA95 /* StoreKit.framework */; };
 		E9A8343D2D5E5563000CCA95 /* InAppProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8343C2D5E5563000CCA95 /* InAppProduct.swift */; };
 		E9A8343F2D5E5586000CCA95 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8343E2D5E5586000CCA95 /* InAppPurchaseManager.swift */; };
@@ -40,6 +38,13 @@
 		E9E81A772C5BD538005A82E6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E9E81A762C5BD538005A82E6 /* Realm */; };
 		E9E81A792C5BD538005A82E6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E9E81A782C5BD538005A82E6 /* RealmSwift */; };
 		E9E81A7B2C5BD662005A82E6 /* RealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E81A7A2C5BD662005A82E6 /* RealmDataModel.swift */; };
+		3656AD18047243EB86B7CA0A /* FocusTimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1D6C226DF240A4A7A38EE0 /* FocusTimerAttributes.swift */; };
+		5ED217784D394DB490E1D4ED /* FocusTimerLiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265DB6D765E42088169078F /* FocusTimerLiveActivityManager.swift */; };
+		63638FCB8FAC4B7B960A5575 /* FocusTimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1D6C226DF240A4A7A38EE0 /* FocusTimerAttributes.swift */; };
+		2756E4D4E44A40958BE05AF8 /* FocusTimerLiveActivityBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F8F6D32A14FB4BBAC6322 /* FocusTimerLiveActivityBundle.swift */; };
+		C15F19AA28894BFA8118E608 /* FocusTimerLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CBC9C920DA40D0B4FA6F00 /* FocusTimerLiveActivityWidget.swift */; };
+		33EFEFA6041F43B49B573984 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9369D422C5EB51E00D05501 /* Localizable.strings */; };
+		14744AED27BB487F88AA13DF /* FocusTimerLiveActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 21E307AADB7548618875C87E /* FocusTimerLiveActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +65,6 @@
 		E90C3ECC2C5A73D6002DACB9 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		E90C3ECE2C5A74CC002DACB9 /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		E90C3EE12C5A8C66002DACB9 /* TimeConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConvertion.swift; sourceTree = "<group>"; };
-		E90C54512D5A4BE8003A3764 /* NativeAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdView.swift; sourceTree = "<group>"; };
 		E9369D222C5E633C00D05501 /* SoundModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModule.swift; sourceTree = "<group>"; };
 		E9369D2A2C5EA09200D05501 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9369D2C2C5EA57100D05501 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -94,7 +98,37 @@
 		E9A8343E2D5E5586000CCA95 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		E9E44F4E2C5BCDE4005C4AFC /* RealmAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		E9E81A7A2C5BD662005A82E6 /* RealmDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataModel.swift; sourceTree = "<group>"; };
+		7B1D6C226DF240A4A7A38EE0 /* FocusTimerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerAttributes.swift; sourceTree = "<group>"; };
+		6265DB6D765E42088169078F /* FocusTimerLiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerLiveActivityManager.swift; sourceTree = "<group>"; };
+		027F8F6D32A14FB4BBAC6322 /* FocusTimerLiveActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerLiveActivityBundle.swift; sourceTree = "<group>"; };
+		D0CBC9C920DA40D0B4FA6F00 /* FocusTimerLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerLiveActivityWidget.swift; sourceTree = "<group>"; };
+		66D4D33685E54D7D862793F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21E307AADB7548618875C87E /* FocusTimerLiveActivity.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FocusTimerLiveActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXContainerItemProxy section */
+		05132E77960E45939B5F0DEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E90C3E7E2C5A6DCA002DACB9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D3994274F264D2AAFEF744E;
+			remoteInfo = FocusTimerLiveActivity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B2092533C8AA465D9E90101D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				14744AED27BB487F88AA13DF /* FocusTimerLiveActivity.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E90C3E832C5A6DCA002DACB9 /* Frameworks */ = {
@@ -106,10 +140,16 @@
 				E90C3EA42C5A6E26002DACB9 /* RxRelay in Frameworks */,
 				E9E81A792C5BD538005A82E6 /* RealmSwift in Frameworks */,
 				E90C3EA22C5A6E26002DACB9 /* RxCocoa in Frameworks */,
-				E975F4AA2D5CB1FC008048AB /* GoogleMobileAds in Frameworks */,
 				E90C3EA62C5A6E26002DACB9 /* RxSwift in Frameworks */,
 				E90C3E9F2C5A6DF0002DACB9 /* SnapKit in Frameworks */,
 				E90C3EB02C5A6F26002DACB9 /* FSCalendar in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA8CA52150B4CA7BACF2019 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				E90C3E882C5A6DCA002DACB9 /* FocusTimer */,
+				4842FA6CB4AB4163ADCA6A1A /* FocusTimerLiveActivity */,
 				E90C3E872C5A6DCA002DACB9 /* Products */,
 				3DCD245BAFD508CA0A7B8B02 /* Pods */,
 				E9A834382D5E552E000CCA95 /* Frameworks */,
@@ -137,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				E90C3E862C5A6DCA002DACB9 /* FocusTimer.app */,
+				21E307AADB7548618875C87E /* FocusTimerLiveActivity.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,6 +273,7 @@
 		E90C3EBA2C5A7008002DACB9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D1A66D8C81774100BFA1E7D1 /* LiveActivity */,
 				E9A8343B2D5E554A000CCA95 /* InAppProduct */,
 				E9369D242C5EA00700D05501 /* Localized */,
 				E90C3EC22C5A71BB002DACB9 /* Extension.swift */,
@@ -270,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				E90C3EA72C5A6EBE002DACB9 /* CircularSlider.swift */,
-				E90C54512D5A4BE8003A3764 /* NativeAdView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -309,6 +351,25 @@
 			path = InAppProduct;
 			sourceTree = "<group>";
 		};
+		D1A66D8C81774100BFA1E7D1 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				7B1D6C226DF240A4A7A38EE0 /* FocusTimerAttributes.swift */,
+				6265DB6D765E42088169078F /* FocusTimerLiveActivityManager.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		4842FA6CB4AB4163ADCA6A1A /* FocusTimerLiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				027F8F6D32A14FB4BBAC6322 /* FocusTimerLiveActivityBundle.swift */,
+				D0CBC9C920DA40D0B4FA6F00 /* FocusTimerLiveActivityWidget.swift */,
+				66D4D33685E54D7D862793F9 /* Info.plist */,
+			);
+			path = FocusTimerLiveActivity;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,10 +380,12 @@
 				E90C3E822C5A6DCA002DACB9 /* Sources */,
 				E90C3E832C5A6DCA002DACB9 /* Frameworks */,
 				E90C3E842C5A6DCA002DACB9 /* Resources */,
+				B2092533C8AA465D9E90101D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B4769DA74CFF4311AA87986E /* PBXTargetDependency */,
 			);
 			name = FocusTimer;
 			packageProductDependencies = (
@@ -333,11 +396,29 @@
 				E90C3EAF2C5A6F26002DACB9 /* FSCalendar */,
 				E9E81A762C5BD538005A82E6 /* Realm */,
 				E9E81A782C5BD538005A82E6 /* RealmSwift */,
-				E975F4A92D5CB1FC008048AB /* GoogleMobileAds */,
 			);
 			productName = FocusTimer;
 			productReference = E90C3E862C5A6DCA002DACB9 /* FocusTimer.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7D3994274F264D2AAFEF744E /* FocusTimerLiveActivity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C8D9DC971FE4E12A1523A1D /* Build configuration list for PBXNativeTarget "FocusTimerLiveActivity" */;
+			buildPhases = (
+				8DF0A08830EE45238755DFDF /* Sources */,
+				ECA8CA52150B4CA7BACF2019 /* Frameworks */,
+				ACB71319CA9A4AB8861C1166 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FocusTimerLiveActivity;
+			packageProductDependencies = (
+			);
+			productName = FocusTimerLiveActivity;
+			productReference = 21E307AADB7548618875C87E /* FocusTimerLiveActivity.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -351,6 +432,9 @@
 				TargetAttributes = {
 					E90C3E852C5A6DCA002DACB9 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					7D3994274F264D2AAFEF744E = {
+						CreatedOnToolsVersion = 26.0;
 					};
 				};
 			};
@@ -374,13 +458,13 @@
 				E90C3EA02C5A6E26002DACB9 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				E90C3EAE2C5A6F26002DACB9 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				E9E81A752C5BD538005A82E6 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				E975F4A82D5CB1FC008048AB /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = E90C3E872C5A6DCA002DACB9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E90C3E852C5A6DCA002DACB9 /* FocusTimer */,
+				7D3994274F264D2AAFEF744E /* FocusTimerLiveActivity */,
 			);
 		};
 /* End PBXProject section */
@@ -395,6 +479,14 @@
 				E90C3E912C5A6DCA002DACB9 /* Main.storyboard in Resources */,
 				E9369D292C5EA09200D05501 /* InfoPlist.strings in Resources */,
 				E9369D4A2C5EB77500D05501 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACB71319CA9A4AB8861C1166 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33EFEFA6041F43B49B573984 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,17 +509,36 @@
 				E90C3EC32C5A71BB002DACB9 /* Extension.swift in Sources */,
 				E90C3EC12C5A718E002DACB9 /* TabbarViewController.swift in Sources */,
 				E9A8343F2D5E5586000CCA95 /* InAppPurchaseManager.swift in Sources */,
-				E90C54522D5A4BE8003A3764 /* NativeAdView.swift in Sources */,
 				E9369D232C5E633C00D05501 /* SoundModule.swift in Sources */,
 				E90C3EC52C5A729F002DACB9 /* CalendarViewController.swift in Sources */,
 				E90C3EA82C5A6EBF002DACB9 /* CircularSlider.swift in Sources */,
 				E9E81A7B2C5BD662005A82E6 /* RealmDataModel.swift in Sources */,
 				E9A8343D2D5E5563000CCA95 /* InAppProduct.swift in Sources */,
 				E90C3ECF2C5A74CC002DACB9 /* LoadData.swift in Sources */,
+				3656AD18047243EB86B7CA0A /* FocusTimerAttributes.swift in Sources */,
+				5ED217784D394DB490E1D4ED /* FocusTimerLiveActivityManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DF0A08830EE45238755DFDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63638FCB8FAC4B7B960A5575 /* FocusTimerAttributes.swift in Sources */,
+				2756E4D4E44A40958BE05AF8 /* FocusTimerLiveActivityBundle.swift in Sources */,
+				C15F19AA28894BFA8118E608 /* FocusTimerLiveActivityWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4769DA74CFF4311AA87986E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D3994274F264D2AAFEF744E /* FocusTimerLiveActivity */;
+			targetProxy = 05132E77960E45939B5F0DEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E90C3E8F2C5A6DCA002DACB9 /* Main.storyboard */ = {
@@ -627,7 +738,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -663,7 +774,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -676,6 +787,62 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		318B13E5632C453F825F6662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2025022501;
+				DEVELOPMENT_TEAM = 8Y6GZNH939;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusTimerLiveActivity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggasoon2.FocusTimer.LiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AA4990995C974B4892A2E52B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2025022501;
+				DEVELOPMENT_TEAM = 8Y6GZNH939;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusTimerLiveActivity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggasoon2.FocusTimer.LiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -699,6 +866,15 @@
 			buildConfigurations = (
 				E90C3E9B2C5A6DCC002DACB9 /* Debug */,
 				E90C3E9C2C5A6DCC002DACB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C8D9DC971FE4E12A1523A1D /* Build configuration list for PBXNativeTarget "FocusTimerLiveActivity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				318B13E5632C453F825F6662 /* Debug */,
+				AA4990995C974B4892A2E52B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -728,14 +904,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.8.4;
-			};
-		};
-		E975F4A82D5CB1FC008048AB /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = exactVersion;
-				version = 11.1.0;
 			};
 		};
 		E9E81A752C5BD538005A82E6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
@@ -773,11 +941,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E90C3EAE2C5A6F26002DACB9 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
-		};
-		E975F4A92D5CB1FC008048AB /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E975F4A82D5CB1FC008048AB /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 		E9E81A762C5BD538005A82E6 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;

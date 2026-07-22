@@ -18,7 +18,7 @@
 "end" = "Đã hoàn thành bộ hẹn giờ";
 "focus_on" = "tập trung.";
 
-"Purchase" = "Mua chức năng xóa quảng cáo🙏";
+"Purchase" = "(Dù không có quảng cáo) Xóa quảng cáo..";
 "Restore" = "Khôi phục giao dịch mua";
 "Products" = "Sản phẩm";
 
@@ -29,3 +29,12 @@
 "deferred" = "⏳ Thanh toán đang chờ xử lý. Vui lòng đợi.";
 "unknown" = "⚠️ Trạng thái thanh toán không xác định.";
 "ad_already_removed" = "Xóa quảng cáo đã được kích hoạt.";
+
+"today_focus_time" = "Tập trung hôm nay: %@";
+"weekly_focus_time" = "Tập trung tuần này: %@";
+"monthly_focus_time" = "Tập trung tháng này: %@";
+"focus_duration_format" = "%@ giờ";
+
+"live_activity_title" = "Focus Timer";
+"live_activity_focusing" = "Đang tập trung";
+"live_activity_paused" = "Đã tạm dừng";

@@ -18,7 +18,7 @@
 "end" = "计时器完成";
 "focus_on" = "专注。";
 
-"Purchase" = "购买去广告功能🙏";
+"Purchase" = "（虽然没有广告）移除广告..";
 "Restore" = "恢复购买";
 "Products" = "商品";
 
@@ -29,3 +29,12 @@
 "deferred" = "⏳ 付款正在处理中，请稍候。";
 "unknown" = "⚠️ 未知的付款状态。";
 "ad_already_removed" = "广告移除已启用。";
+
+"today_focus_time" = "今天的专注时间 %@";
+"weekly_focus_time" = "本周的专注时间 %@";
+"monthly_focus_time" = "本月的专注时间 %@";
+"focus_duration_format" = "%@小时";
+
+"live_activity_title" = "Focus Timer";
+"live_activity_focusing" = "专注中";
+"live_activity_paused" = "已暂停";

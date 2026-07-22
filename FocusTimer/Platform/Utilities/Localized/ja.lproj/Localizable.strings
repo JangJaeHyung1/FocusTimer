@@ -19,7 +19,7 @@
 "end" = "タイマーが完了しました";
 "focus_on" = "集中した。";
 
-"Purchase" = "広告削除機能を購入🙏";
+"Purchase" = "（広告はありませんが）広告を削除する..";
 "Restore" = "購入を復元";
 "Products" = "商品";
 
@@ -30,3 +30,12 @@
 "deferred" = "⏳ 支払いが保留中です。お待ちください。";
 "unknown" = "⚠️ 不明な支払い状態です。";
 "ad_already_removed" = "広告の削除は既に有効です。";
+
+"today_focus_time" = "今日の集中時間 %@";
+"weekly_focus_time" = "今週の集中時間 %@";
+"monthly_focus_time" = "今月の集中時間 %@";
+"focus_duration_format" = "%@時間";
+
+"live_activity_title" = "Focus Timer";
+"live_activity_focusing" = "集中中";
+"live_activity_paused" = "一時停止";

@@ -97,7 +97,7 @@ class InAppPurchaseManager: NSObject, SKProductsRequestDelegate, SKPaymentTransa
                 showToastMessage("purchase_success")
 
             case .failed:
-                if transaction.payment.productIdentifier == "com.yourapp.adremoval" {
+                if transaction.payment.productIdentifier == InAppProducts.product {
                     print("⚠️ 구매 복원 실패: \(transaction.error?.localizedDescription ?? "알 수 없는 오류")")
                     restoreResult.onNext(.failure(transaction.error ?? NSError(domain: "InAppPurchase", code: -1, userInfo: [NSLocalizedDescriptionKey: "알 수 없는 오류"])))
                     showToastMessage("restore_failed")
