@@ -2,13 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>SupabaseProjectRef</key>
+	<string>$(SUPABASE_PROJECT_REF)</string>
+	<key>SupabasePublishableKey</key>
+	<string>$(SUPABASE_PUBLISHABLE_KEY)</string>
 	<key>NSAllowsLocalNetworking</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSSupportsSuddenTermination</key>
 	<false/>
 	<key>NSSupportsLiveActivities</key>

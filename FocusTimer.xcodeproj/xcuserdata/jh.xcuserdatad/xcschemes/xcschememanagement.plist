@@ -12,7 +12,7 @@
 		<key>FocusTimerLiveActivity.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 		<key>GettingStarted (Playground) 1.xcscheme</key>
 		<dict>
@@ -181,6 +181,19 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7D3994274F264D2AAFEF744E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E90C3E852C5A6DCA002DACB9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

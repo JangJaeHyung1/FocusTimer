@@ -1,0 +1,4 @@
+// Values stay empty in the repository. Secrets.xcconfig is intentionally ignored.
+SUPABASE_PROJECT_REF =
+SUPABASE_PUBLISHABLE_KEY =
+#include? "Secrets.xcconfig"

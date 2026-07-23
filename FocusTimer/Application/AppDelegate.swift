@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        RealmAPI.configure()
         // 앱 실행 시 사용자에게 알림 허용 권한을 받음
         UNUserNotificationCenter.current().delegate = self
         // 권한 종류 만들기 (뱃지와 소리)
@@ -38,10 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    func applicationWillTerminate(_ application: UIApplication) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["local_push"])
-    }
-
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -50,4 +47,24 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.list, .banner])
     }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        guard response.notification.request.identifier == "local_push" else {
+            completionHandler()
+            return
+        }
+
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .focusTimerNotificationOpened, object: nil)
+            completionHandler()
+        }
+    }
+}
+
+extension Notification.Name {
+    static let focusTimerNotificationOpened = Notification.Name("focusTimerNotificationOpened")
 }

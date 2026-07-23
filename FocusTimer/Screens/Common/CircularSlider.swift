@@ -198,6 +198,13 @@ class CircularSlider: UIControl {
         CATransaction.commit()
         
         sendActions(for: .valueChanged)
+
+        switch gesture.state {
+        case .ended, .cancelled, .failed:
+            sendActions(for: .editingDidEnd)
+        default:
+            break
+        }
     }
     
     func setValue(_ newValue: CGFloat, animated: Bool = false) {

@@ -14,6 +14,15 @@ import SnapKit
 class CalendarCollectionViewCell: FSCalendarCell {
     var disposeBag = DisposeBag()
     static let cellId = "CalendarCollectionViewCell"
+
+    private static let hoursFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        formatter.roundingMode = .halfUp
+        return formatter
+    }()
     
     private let backImageView: UIImageView = {
         let img = UIImageView()
@@ -116,7 +125,7 @@ class CalendarCollectionViewCell: FSCalendarCell {
             timeLbl.isHidden = false
             timeLblBGView.isHidden = false
 //            setTimeLblBGView(second: presentable.seconds)
-            timeLbl.text = TimeConvertion.shared.convertMinute(seconds: presentable.seconds)
+            timeLbl.text = formattedHours(presentable.seconds)
             if isToday {
                 dateLbl.textColor = BaseColor.black
                 dateLbl.font = BaseFont.title2_num
@@ -134,6 +143,13 @@ class CalendarCollectionViewCell: FSCalendarCell {
             }
         }
     }
+
+    private func formattedHours(_ seconds: Int) -> String {
+        let hours = Double(max(seconds, 0)) / 3600
+        let value = Self.hoursFormatter.string(from: NSNumber(value: hours)) ?? "0"
+        return "\(value) h"
+    }
+
     // 0~3 1시
     // 3~5 4시
     // 5~8 6 시

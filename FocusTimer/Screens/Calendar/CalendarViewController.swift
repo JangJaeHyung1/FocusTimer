@@ -48,9 +48,8 @@ class CalendarViewController: UIViewController {
         return lbl
     }()
 
-    private let todayFocusTimeLabel = CalendarViewController.makeSummaryLabel()
-    private let weeklyFocusTimeLabel = CalendarViewController.makeSummaryLabel()
-    private let monthlyFocusTimeLabel = CalendarViewController.makeSummaryLabel()
+    private let currentWeekFocusTimeLabel = CalendarViewController.makeSummaryLabel()
+    private let monthFocusTimeLabel = CalendarViewController.makeSummaryLabel()
 
     private let summaryContainerView: UIView = {
         let view = UIView()
@@ -62,9 +61,8 @@ class CalendarViewController: UIViewController {
 
     private lazy var summaryStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            todayFocusTimeLabel,
-            weeklyFocusTimeLabel,
-            monthlyFocusTimeLabel
+            currentWeekFocusTimeLabel,
+            monthFocusTimeLabel
         ])
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -73,10 +71,13 @@ class CalendarViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     let calendarCurrent = Calendar.current
     var records: [DataModel] = []
     private var calendarHeightConstraint: Constraint?
+    private var recordsLoadedSuccessfully = false
+    private var rankingResults: [FocusRankingResult] = []
+    private var rankingTask: Task<Void, Never>?
     
     private let disposeBag = DisposeBag()
     
@@ -87,11 +88,25 @@ class CalendarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = false
-        self.records = LoadData.items
+        do {
+            records = try RealmAPI.shared.load()
+            LoadData.items = records
+            recordsLoadedSuccessfully = true
+        } catch {
+            records = LoadData.items
+            recordsLoadedSuccessfully = false
+            debugPrint("❌ Calendar Realm load error: \(error.localizedDescription)")
+        }
+        rankingResults = []
         updateFocusTimeSummaries()
         DispatchQueue.main.async {
             self.calendarView.reloadData()
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        rankingTask?.cancel()
     }
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -162,6 +177,7 @@ extension CalendarViewController {
             make.trailing.equalToSuperview().offset(-16)
             calendarHeightConstraint = make.height.equalTo(422 + 75).priority(.high).constraint
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.bottom.lessThanOrEqualTo(summaryContainerView.snp.top).offset(-12)
             make.centerX.equalToSuperview()
         }
         leftBtn.snp.makeConstraints { make in
@@ -179,34 +195,142 @@ extension CalendarViewController {
             make.centerY.equalTo(leftBtn)
         }
         summaryContainerView.snp.makeConstraints { make in
-            make.top.equalTo(calendarView.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
         }
         summaryStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16))
         }
     }
 
-    private func updateFocusTimeSummaries(now: Date = Date()) {
-        let todaySeconds = totalFocusTime(in: .day, containing: now)
-        let weeklySeconds = totalFocusTime(in: .weekOfYear, containing: now)
-        let monthlySeconds = totalFocusTime(in: .month, containing: now)
+    private func updateFocusTimeSummaries(
+        now: Date = Date(),
+        requestDelayNanoseconds: UInt64 = 0
+    ) {
+        let displayedMonth = calendarView.currentPage
+        let isCurrentMonth = FocusSummaryCalculator.isSameMonth(displayedMonth, now)
+        let monthSummary = FocusSummaryCalculator.month(
+            containing: displayedMonth,
+            records: records
+        )
+        let weekSummary = isCurrentMonth
+            ? FocusSummaryCalculator.currentWeek(records: records, now: now)
+            : nil
 
-        todayFocusTimeLabel.text = "today_focus_time".localizedFormat(formatFocusHours(todaySeconds))
-        weeklyFocusTimeLabel.text = "weekly_focus_time".localizedFormat(formatFocusHours(weeklySeconds))
-        monthlyFocusTimeLabel.text = "monthly_focus_time".localizedFormat(formatFocusHours(monthlySeconds))
-    }
+        currentWeekFocusTimeLabel.isHidden = !isCurrentMonth
 
-    private func totalFocusTime(in component: Calendar.Component, containing date: Date) -> Int {
-        guard let interval = calendarCurrent.dateInterval(of: component, for: date) else { return 0 }
+        if let weekSummary {
+            currentWeekFocusTimeLabel.text = summaryText(
+                localizationKey: "current_week_total_focus_time",
+                summary: weekSummary
+            )
+            monthFocusTimeLabel.text = summaryText(
+                localizationKey: "current_month_total_focus_time",
+                summary: monthSummary
+            )
+        } else {
+            monthFocusTimeLabel.text = summaryText(
+                localizationKey: "displayed_month_total_focus_time",
+                summary: monthSummary
+            )
+        }
 
-        return records.reduce(into: 0) { total, record in
-            if interval.contains(record.date) {
-                total += record.seconds
+        rankingTask?.cancel()
+        guard recordsLoadedSuccessfully else { return }
+
+        let summaries: [FocusPeriodSummary]
+        if let weekSummary {
+            summaries = [weekSummary, monthSummary]
+        } else if FocusSummaryCalculator.isWithinLatestTwelveMonths(displayedMonth, now: now) {
+            summaries = [monthSummary]
+        } else {
+            return
+        }
+
+        let expectedMonthKey = monthSummary.periodKey
+        rankingTask = Task { [weak self] in
+            do {
+                let cacheLookup = await FocusRankingService.shared.cachedLookup(
+                    for: summaries,
+                    now: now
+                )
+                try Task.checkCancellation()
+
+                if let self {
+                    let visibleMonthKey = FocusSummaryCalculator.month(
+                        containing: self.calendarView.currentPage,
+                        records: self.records
+                    ).periodKey
+                    guard visibleMonthKey == expectedMonthKey else { return }
+                    self.rankingResults = cacheLookup.results
+                    self.renderFocusTimeSummaries(now: now)
+                }
+
+                guard cacheLookup.requiresSync else { return }
+                if requestDelayNanoseconds > 0 {
+                    try await Task.sleep(nanoseconds: requestDelayNanoseconds)
+                }
+                try Task.checkCancellation()
+                let results = try await FocusRankingService.shared.sync(summaries)
+                try Task.checkCancellation()
+                guard let self else { return }
+                let visibleMonthKey = FocusSummaryCalculator.month(
+                    containing: self.calendarView.currentPage,
+                    records: self.records
+                ).periodKey
+                guard visibleMonthKey == expectedMonthKey else { return }
+                self.rankingResults = results
+                self.renderFocusTimeSummaries(now: now)
+            } catch is CancellationError {
+                return
+            } catch SupabaseClientError.notConfigured {
+                return
+            } catch {
+                debugPrint("❌ Focus ranking sync error: \(error.localizedDescription)")
             }
         }
+    }
+
+    private func renderFocusTimeSummaries(now: Date) {
+        let displayedMonth = calendarView.currentPage
+        let isCurrentMonth = FocusSummaryCalculator.isSameMonth(displayedMonth, now)
+        let monthSummary = FocusSummaryCalculator.month(
+            containing: displayedMonth,
+            records: records
+        )
+
+        if isCurrentMonth {
+            let weekSummary = FocusSummaryCalculator.currentWeek(records: records, now: now)
+            currentWeekFocusTimeLabel.text = summaryText(
+                localizationKey: "current_week_total_focus_time",
+                summary: weekSummary
+            )
+            monthFocusTimeLabel.text = summaryText(
+                localizationKey: "current_month_total_focus_time",
+                summary: monthSummary
+            )
+        } else {
+            monthFocusTimeLabel.text = summaryText(
+                localizationKey: "displayed_month_total_focus_time",
+                summary: monthSummary
+            )
+        }
+    }
+
+    private func summaryText(
+        localizationKey: String,
+        summary: FocusPeriodSummary
+    ) -> String {
+        let baseText = localizationKey.localizedFormat(formatFocusHours(summary.totalSeconds))
+        guard
+            let ranking = rankingResults.first(where: {
+                $0.periodType == summary.periodType && $0.periodKey == summary.periodKey
+            }),
+            let rankingText = ranking.localizedText
+        else { return baseText }
+
+        return "\(baseText) · \(rankingText)"
     }
 
     private func formatFocusHours(_ seconds: Int) -> String {
@@ -277,6 +401,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, UICo
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         titleLbl.text = calendar.currentPage.month
+        updateFocusTimeSummaries(requestDelayNanoseconds: 350_000_000)
     }
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
     

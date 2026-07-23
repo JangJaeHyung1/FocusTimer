@@ -33,7 +33,12 @@
 "today_focus_time" = "Focused today: %@";
 "weekly_focus_time" = "Focused this week: %@";
 "monthly_focus_time" = "Focused this month: %@";
-"focus_duration_format" = "%@ hr";
+"current_week_total_focus_time" = "This week %@";
+"current_month_total_focus_time" = "This month %@";
+"displayed_month_total_focus_time" = "Selected month %@";
+"focus_duration_format" = " %@ hr";
+"ranking_collecting" = "Calculating";
+"ranking_top_percent_format" = "Top %d%%";
 
 "live_activity_title" = "Focus Timer";
 "live_activity_focusing" = "Focusing";

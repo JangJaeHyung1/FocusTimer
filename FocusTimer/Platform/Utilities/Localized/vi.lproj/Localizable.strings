@@ -33,8 +33,13 @@
 "today_focus_time" = "Tập trung hôm nay: %@";
 "weekly_focus_time" = "Tập trung tuần này: %@";
 "monthly_focus_time" = "Tập trung tháng này: %@";
-"focus_duration_format" = "%@ giờ";
+"current_week_total_focus_time" = "Tuần này %@";
+"current_month_total_focus_time" = "Tháng này %@";
+"displayed_month_total_focus_time" = "Tháng đã chọn %@";
+"focus_duration_format" = " %@ giờ";
+"ranking_collecting" = "Đang tính";
+"ranking_top_percent_format" = "Top %d%%";
 
-"live_activity_title" = "Focus Timer";
+"live_activity_title" = "Hẹn Giờ Tập Trung";
 "live_activity_focusing" = "Đang tập trung";
 "live_activity_paused" = "Đã tạm dừng";

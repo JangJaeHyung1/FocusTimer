@@ -33,8 +33,13 @@
 "today_focus_time" = "Фокус сегодня: %@";
 "weekly_focus_time" = "Фокус на этой неделе: %@";
 "monthly_focus_time" = "Фокус в этом месяце: %@";
-"focus_duration_format" = "%@ ч";
+"current_week_total_focus_time" = "Эта неделя %@";
+"current_month_total_focus_time" = "Этот месяц %@";
+"displayed_month_total_focus_time" = "Выбранный месяц %@";
+"focus_duration_format" = " %@ ч";
+"ranking_collecting" = "Расчёт";
+"ranking_top_percent_format" = "Топ %d%%";
 
-"live_activity_title" = "Focus Timer";
+"live_activity_title" = "Фокус-таймер";
 "live_activity_focusing" = "Фокус";
 "live_activity_paused" = "Пауза";

@@ -34,8 +34,13 @@
 "today_focus_time" = "今天的專注時間 %@";
 "weekly_focus_time" = "本週的專注時間 %@";
 "monthly_focus_time" = "本月的專注時間 %@";
-"focus_duration_format" = "%@小時";
+"current_week_total_focus_time" = "本週 %@";
+"current_month_total_focus_time" = "本月 %@";
+"displayed_month_total_focus_time" = "所選月 %@";
+"focus_duration_format" = " %@小時";
+"ranking_collecting" = "統計中";
+"ranking_top_percent_format" = "前%d%%";
 
-"live_activity_title" = "Focus Timer";
+"live_activity_title" = "專注計時器";
 "live_activity_focusing" = "專注中";
 "live_activity_paused" = "已暫停";

@@ -34,8 +34,13 @@
 "today_focus_time" = "今日の集中時間 %@";
 "weekly_focus_time" = "今週の集中時間 %@";
 "monthly_focus_time" = "今月の集中時間 %@";
-"focus_duration_format" = "%@時間";
+"current_week_total_focus_time" = "今週 %@";
+"current_month_total_focus_time" = "今月 %@";
+"displayed_month_total_focus_time" = "表示月 %@";
+"focus_duration_format" = " %@時間";
+"ranking_collecting" = "集計中";
+"ranking_top_percent_format" = "上位%d%%";
 
-"live_activity_title" = "Focus Timer";
+"live_activity_title" = "集中タイマー";
 "live_activity_focusing" = "集中中";
 "live_activity_paused" = "一時停止";

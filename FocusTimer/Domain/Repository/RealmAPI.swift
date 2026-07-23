@@ -12,6 +12,17 @@ class RealmAPI {
     static let shared = RealmAPI()
     private init() { }
 
+    static func configure() {
+        var configuration = Realm.Configuration.defaultConfiguration
+        guard configuration.schemaVersion < 1 else { return }
+
+        configuration.schemaVersion = 1
+        configuration.migrationBlock = { _, _ in
+            // Realm automatically initializes completedSessionIDs for existing records.
+        }
+        Realm.Configuration.defaultConfiguration = configuration
+    }
+
     
     func save(item: DataModel) throws -> Bool {
         do {
@@ -23,10 +34,7 @@ class RealmAPI {
             try realm.write {
 //                print("123")
                 if let oldData = oldData {
-                    let oldDataTime: Int = oldData.seconds
-                    realm.delete(oldData)
-                    let newData = RealmDataModel(date: item.date, seconds: item.seconds + oldDataTime)
-                    realm.add(newData)
+                    oldData.seconds += item.seconds
                 } else {
                     let newData = RealmDataModel(date: item.date, seconds: item.seconds)
                     realm.add(newData)
@@ -38,6 +46,32 @@ class RealmAPI {
             debugPrint("❌ Realm API save error: \(error.localizedDescription)")
             return false
         }
+        return true
+    }
+
+    /// Saves a completed timer exactly once, even if foreground and notification
+    /// callbacks try to reconcile the same session at nearly the same time.
+    func saveCompletedSession(item: DataModel, sessionID: String) throws -> Bool {
+        let realm = try Realm()
+        let oldData = realm.objects(RealmDataModel.self)
+            .first { $0.date.summary == item.date.summary }
+
+        if oldData?.completedSessionIDs.contains(sessionID) == true {
+            return false
+        }
+
+        try realm.write {
+            if let oldData {
+                oldData.seconds += item.seconds
+                oldData.completedSessionIDs.append(sessionID)
+            } else {
+                let newData = RealmDataModel(date: item.date, seconds: item.seconds)
+                newData.completedSessionIDs.append(sessionID)
+                realm.add(newData)
+            }
+        }
+
+        debugPrint("🔵 Realm completed timer save success")
         return true
     }
     

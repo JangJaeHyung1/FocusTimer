@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     var goBackgroundTime: Date = Date()
     var goForegroundTime: Date = Date()
     var gapTime: Int = 0
+    private var isCompletingSession = false
     private let disposeBag = DisposeBag()
     private let centerCircle: UIView = {
         let view = UIView()
@@ -106,7 +107,9 @@ class MainViewController: UIViewController {
                                          name: Notification.Name("sw1"), object: nil)
         setCircleColor()
         bind()
-        fetch()
+        if let records = fetch() {
+            syncCurrentFocusSummaries(records: records)
+        }
         view.backgroundColor = .white
         circularSlider.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(circularSlider)
@@ -163,8 +166,10 @@ class MainViewController: UIViewController {
         }
         
         circularSlider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        circularSlider.addTarget(self, action: #selector(sliderEditingDidEnd(_:)), for: .editingDidEnd)
         btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
         circularSlider.setValue(0.026)
+        restorePersistedTimerIfNeeded()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -297,6 +302,12 @@ class MainViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(focusTimerNotificationOpened),
+            name: .focusTimerNotificationOpened,
+            object: nil
+        )
         
         resumeBtn.rx.tap
             .subscribe(onNext:{ [weak self] res in
@@ -320,29 +331,49 @@ class MainViewController: UIViewController {
         guard let timer = timer else { return }
         if timer.isValid {
             removePush()
-            pushNotification(seconds: Double(seconds))
+            let session = FocusTimerSessionStore.load()
+            let notificationInterval = session?.status == .running
+                ? max(session?.endDate.timeIntervalSinceNow ?? Double(seconds), 1)
+                : max(Double(seconds), 1)
+            pushNotification(
+                seconds: notificationInterval,
+                sessionID: session?.id
+            )
         }
     }
     
     @objc private func appMovedToForeground() {
         goForegroundTime = Date()
-        guard let timer = timer else { return }
-        if timer.isValid {
-            seconds = max (gapTime - Int(goForegroundTime.timeIntervalSince(goBackgroundTime)), 0)
-            circularSlider.setValue(CGFloat(seconds) / CGFloat(3600))
-            if seconds == 0 {
-                stopTimer(isBackgroundToForeground: true)
-            }
-        }
+        restorePersistedTimerIfNeeded()
+    }
+
+    @objc private func focusTimerNotificationOpened() {
+        restorePersistedTimerIfNeeded()
     }
     
-    private func fetch() {
+    @discardableResult
+    private func fetch() -> [DataModel]? {
 //        dummyData()
         do {
             let data = try RealmAPI.shared.load()
             LoadData.items = data
+            return data
         } catch {
             print("❌ mainVM fetchData() load error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    private func syncCurrentFocusSummaries(records: [DataModel]) {
+        let summaries = FocusSummaryCalculator.currentPeriods(records: records)
+        Task {
+            do {
+                _ = try await FocusRankingService.shared.sync(summaries)
+            } catch SupabaseClientError.notConfigured {
+                return
+            } catch {
+                debugPrint("❌ Focus ranking sync error: \(error.localizedDescription)")
+            }
         }
     }
     
@@ -360,6 +391,15 @@ class MainViewController: UIViewController {
         seconds = Int(sender.getValue() * 3600)
         timeLbl.text = TimeConvertion.shared.convertSeconds(seconds: seconds)
     }
+
+    @objc private func sliderEditingDidEnd(_ sender: CircularSlider) {
+        let roundedMinutes = Int((sender.getValue() * 60).rounded())
+        seconds = roundedMinutes * 60
+        sender.setValue(CGFloat(seconds) / 3600)
+        timeLbl.text = TimeConvertion.shared.convertSeconds(seconds: seconds)
+        btn.isEnabled = seconds > 0
+    }
+
     @objc private func btnTapped() {
         if btn.titleLabel?.text == "pause".localized {
             removePush()
@@ -367,7 +407,11 @@ class MainViewController: UIViewController {
             resetBtn.isHidden = false
             resumeBtn.isHidden = false
             timer?.invalidate()
-            FocusTimerLiveActivityManager.shared.pause(seconds: seconds)
+            FocusTimerSessionStore.pause(remainingSeconds: seconds)
+            FocusTimerLiveActivityManager.shared.pause(
+                seconds: seconds,
+                totalSeconds: recordData
+            )
         } else {
             recordData = seconds
             showPause()
@@ -379,9 +423,22 @@ class MainViewController: UIViewController {
     // 리셋된 상태
     // 종료된 상태
     private func showPause() {
-        pushNotification(seconds: Double(seconds))
-        FocusTimerLiveActivityManager.shared.startOrResume(seconds: seconds)
+        let session = FocusTimerSessionStore.startOrResume(
+            durationSeconds: recordData,
+            remainingSeconds: seconds
+        )
+        pushNotification(seconds: Double(seconds), sessionID: session.id)
+        FocusTimerLiveActivityManager.shared.startOrResume(
+            seconds: seconds,
+            totalSeconds: recordData
+        )
+        showRunningState()
+        startTimerIfNeeded()
+    }
+
+    private func showRunningState() {
         btn.isHidden = false
+        btn.isEnabled = true
         resetBtn.isHidden = true
         resumeBtn.isHidden = true
         btn.setTitle("pause".localized, for: .normal)
@@ -394,6 +451,10 @@ class MainViewController: UIViewController {
         circularSlider.isEnabled = false
         btn.configuration?.baseBackgroundColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1)
         btn.setTitleColor(UIColor.black, for: .normal)
+    }
+
+    private func startTimerIfNeeded() {
+        guard timer?.isValid != true else { return }
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
     
@@ -408,6 +469,7 @@ class MainViewController: UIViewController {
     }
     private func tappedReset() {
         FocusTimerLiveActivityManager.shared.end()
+        FocusTimerSessionStore.clear()
         seconds = 0
         circularSlider.setValue(0.026)
         resetBtn.isHidden = true
@@ -416,8 +478,13 @@ class MainViewController: UIViewController {
     }
     
     @objc func fireTimer() {
-        seconds -= 1
-        if seconds == -1 {
+        if let session = FocusTimerSessionStore.load(), session.status == .running {
+            seconds = max(Int(ceil(session.endDate.timeIntervalSinceNow)), 0)
+        } else {
+            seconds -= 1
+        }
+
+        if seconds <= 0 {
             stopTimer()
         } else {
             timeLbl.text = TimeConvertion.shared.convertSeconds(seconds: seconds)
@@ -425,17 +492,85 @@ class MainViewController: UIViewController {
         }
     }
     private func stopTimer(isBackgroundToForeground: Bool = false) {
-        Task {
-            timer?.invalidate()
-            FocusTimerLiveActivityManager.shared.end()
-            _ = try RealmAPI.shared.save(item: DataModel(date: Date(), seconds: recordData))
-            fetch()
+        guard !isCompletingSession else { return }
+        isCompletingSession = true
+
+        timer?.invalidate()
+        removePush()
+        FocusTimerLiveActivityManager.shared.end()
+
+        let session = FocusTimerSessionStore.load()
+        let sessionID = session?.id ?? UUID().uuidString
+        let completedAt = session?.endDate ?? Date()
+        let durationSeconds = session?.durationSeconds ?? recordData
+
+        do {
+            let wasSaved = try RealmAPI.shared.saveCompletedSession(
+                item: DataModel(date: completedAt, seconds: durationSeconds),
+                sessionID: sessionID
+            )
+            FocusTimerSessionStore.clear(matching: sessionID)
+            if let records = fetch() {
+                syncCurrentFocusSummaries(records: records)
+            }
             let sw2: Bool = UserDefaults.standard.object(forKey: "sw2") as? Bool ?? true
             if !isBackgroundToForeground {
                 soundModule.soundOutput(sw2: sw2)
             }
             showStart()
-            ReviewRequestManager.registerCompletedSession()
+            if wasSaved {
+                ReviewRequestManager.registerCompletedSession()
+            }
+        } catch {
+            debugPrint("❌ Completed timer save error: \(error.localizedDescription)")
+            showStart()
+        }
+
+        isCompletingSession = false
+    }
+
+    private func restorePersistedTimerIfNeeded(now: Date = Date()) {
+        guard !isCompletingSession, let session = FocusTimerSessionStore.load() else { return }
+
+        recordData = session.durationSeconds
+
+        switch session.status {
+        case .running:
+            let remainingSeconds = max(Int(ceil(session.endDate.timeIntervalSince(now))), 0)
+            seconds = remainingSeconds
+
+            if remainingSeconds == 0 {
+                stopTimer(isBackgroundToForeground: true)
+                return
+            }
+
+            timeLbl.text = TimeConvertion.shared.convertSeconds(seconds: remainingSeconds)
+            circularSlider.setValue(CGFloat(remainingSeconds) / CGFloat(3600))
+            showRunningState()
+            startTimerIfNeeded()
+            FocusTimerLiveActivityManager.shared.startOrResume(
+                seconds: remainingSeconds,
+                totalSeconds: session.durationSeconds
+            )
+
+            removePush()
+            pushNotification(
+                seconds: max(session.endDate.timeIntervalSince(now), 1),
+                sessionID: session.id
+            )
+
+        case .paused:
+            timer?.invalidate()
+            seconds = max(session.remainingSeconds, 0)
+            timeLbl.text = TimeConvertion.shared.convertSeconds(seconds: seconds)
+            circularSlider.setValue(CGFloat(seconds) / CGFloat(3600))
+            circularSlider.isEnabled = false
+            btn.isHidden = true
+            resetBtn.isHidden = false
+            resumeBtn.isHidden = false
+
+            let showsTime = UserDefaults.standard.object(forKey: "sw1") as? Bool ?? true
+            timeLbl.isHidden = !showsTime
         }
     }
 }
@@ -447,7 +582,7 @@ extension MainViewController {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["local_push"])
     }
     
-    func pushNotification(seconds: Double) {
+    func pushNotification(seconds: Double, sessionID: String? = nil) {
         
         let focusTime = TimeConvertion.shared.convertSeconds(seconds: recordData)
 
@@ -456,8 +591,11 @@ extension MainViewController {
         notificationContent.title = "end".localized
         notificationContent.body = focusTime + " " + "focus_on".localized
         notificationContent.sound = .default
+        if let sessionID {
+            notificationContent.userInfo = ["timer_session_id": sessionID]
+        }
         // 2️⃣ 조건(시간, 반복)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(seconds, 1), repeats: false)
 
         // 3️⃣ 요청
         let request = UNNotificationRequest(identifier: "local_push",
@@ -469,6 +607,78 @@ extension MainViewController {
             if let error = error {
                 print("Notification Error: ", error)
             }
+        }
+    }
+}
+
+private struct FocusTimerSession: Codable {
+    enum Status: String, Codable {
+        case running
+        case paused
+    }
+
+    let id: String
+    let startedAt: Date
+    var endDate: Date
+    let durationSeconds: Int
+    var remainingSeconds: Int
+    var status: Status
+}
+
+private enum FocusTimerSessionStore {
+    private static let key = "focusTimer.activeSession.v1"
+
+    static func load() -> FocusTimerSession? {
+        guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
+        do {
+            return try JSONDecoder().decode(FocusTimerSession.self, from: data)
+        } catch {
+            debugPrint("❌ Timer session decode error: \(error.localizedDescription)")
+            UserDefaults.standard.removeObject(forKey: key)
+            return nil
+        }
+    }
+
+    @discardableResult
+    static func startOrResume(
+        durationSeconds: Int,
+        remainingSeconds: Int,
+        now: Date = Date()
+    ) -> FocusTimerSession {
+        let existingSession = load()
+        let pausedSession = existingSession?.status == .paused ? existingSession : nil
+        let session = FocusTimerSession(
+            id: pausedSession?.id ?? UUID().uuidString,
+            startedAt: pausedSession?.startedAt ?? now,
+            endDate: now.addingTimeInterval(TimeInterval(remainingSeconds)),
+            durationSeconds: pausedSession?.durationSeconds ?? durationSeconds,
+            remainingSeconds: remainingSeconds,
+            status: .running
+        )
+        save(session)
+        return session
+    }
+
+    static func pause(remainingSeconds: Int) {
+        guard var session = load() else { return }
+        session.remainingSeconds = remainingSeconds
+        session.status = .paused
+        save(session)
+    }
+
+    static func clear(matching sessionID: String? = nil) {
+        if let sessionID, load()?.id != sessionID {
+            return
+        }
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
+    private static func save(_ session: FocusTimerSession) {
+        do {
+            let data = try JSONEncoder().encode(session)
+            UserDefaults.standard.set(data, forKey: key)
+        } catch {
+            debugPrint("❌ Timer session encode error: \(error.localizedDescription)")
         }
     }
 }

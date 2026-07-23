@@ -6,12 +6,13 @@ final class FocusTimerLiveActivityManager {
 
     private init() { }
 
-    func startOrResume(seconds: Int) {
+    func startOrResume(seconds: Int, totalSeconds: Int) {
         guard seconds > 0, ActivityAuthorizationInfo().areActivitiesEnabled else { return }
 
         let state = FocusTimerAttributes.ContentState(
             endDate: Date().addingTimeInterval(TimeInterval(seconds)),
             remainingSeconds: seconds,
+            totalSeconds: max(totalSeconds, seconds, 1),
             isPaused: false
         )
         let content = ActivityContent(state: state, staleDate: state.endDate)
@@ -34,12 +35,13 @@ final class FocusTimerLiveActivityManager {
         }
     }
 
-    func pause(seconds: Int) {
+    func pause(seconds: Int, totalSeconds: Int) {
         guard let activity = Activity<FocusTimerAttributes>.activities.first else { return }
 
         let state = FocusTimerAttributes.ContentState(
             endDate: Date(),
             remainingSeconds: max(seconds, 0),
+            totalSeconds: max(totalSeconds, seconds, 1),
             isPaused: true
         )
 
@@ -57,6 +59,7 @@ final class FocusTimerLiveActivityManager {
                 let finalState = FocusTimerAttributes.ContentState(
                     endDate: Date(),
                     remainingSeconds: 0,
+                    totalSeconds: 1,
                     isPaused: false
                 )
                 let content = ActivityContent(state: finalState, staleDate: Date())

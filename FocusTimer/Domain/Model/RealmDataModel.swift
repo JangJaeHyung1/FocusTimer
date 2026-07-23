@@ -11,6 +11,8 @@ import RealmSwift
 class RealmDataModel: Object {
     @Persisted(indexed: true) var date: Date // primary key로 지정
     @Persisted var seconds: Int
+    @Persisted var completedSessionIDs: List<String>
+
     convenience init(date: Date, seconds: Int) {
         self.init()
         self.date = date
